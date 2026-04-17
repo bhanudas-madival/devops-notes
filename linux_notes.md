@@ -50,3 +50,40 @@ ls | tee list.txt
 
 echo "new line" | tee -a file.txt
 # -a means append (don’t overwrite)
+
+## 📅 17-04-2026 — Log Analysis Practice
+
+### 🔸 Topics Covered
+- awk (column extraction, filtering)
+- grep (log filtering)
+- head (first lines)
+- sed (line range extraction)
+
+---
+
+### 🔸 Commands Practiced
+
+- awk '/INFO/' sample.log
+- grep -c "INFO" sample.log
+- awk '{print $1,$2,$4}' sample.log
+- head -n 10 sample.log
+- sed -n '3,10p' sample.log | awk '{print $2,$3,$5}'
+
+---
+
+### 🔸 Key Learnings
+- awk uses `$` for columns (`$1,$2...`)
+- single quotes `' '` must be used in awk
+- default delimiter is space
+- pipelines `|` combine commands
+
+---
+
+### 🔸 Mistakes Faced
+- used double quotes `" "` → caused awk error
+- forgot `$` before column numbers → printed literals
+
+---
+
+### 🔸 Summary
+Practiced real log analysis using Linux commands on sample.log and improved understanding of awk behavior and shell quoting.
