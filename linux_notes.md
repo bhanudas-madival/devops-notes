@@ -87,3 +87,31 @@ echo "new line" | tee -a file.txt
 
 ### 🔸 Summary
 Practiced real log analysis using Linux commands on sample.log and improved understanding of awk behavior and shell quoting.
+
+## Storage & LVM
+
+- Difference between xvda and nvme (AWS Nitro vs Xen)
+- lsblk: list block devices
+- df -h: disk usage
+- Identifying root disk using lsblk (/ mount point)
+- nvme naming: nvmeXn1, partitions as p1
+- Raw disk vs PV vs filesystem
+
+### LVM
+- pvcreate: create physical volume
+- pvs: list PVs
+- vgcreate, lvcreate (overview)
+
+### Important
+- Never run pvcreate on root disk (nvme0n1)
+
+## sed & awk
+- NR usage in awk
+- Print specific lines and columns
+- sed -n and p flag behavior
+
+## tmux
+- sessions, windows, attach/detach
+- why tmux is used in DevOps
+
+
