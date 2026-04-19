@@ -114,4 +114,13 @@ Practiced real log analysis using Linux commands on sample.log and improved unde
 - sessions, windows, attach/detach
 - why tmux is used in DevOps
 
+feat: add tmux basics (sessions, split panes, navigation, config)
+
+- learned tmux start, attach, detach, list sessions
+- practiced vertical (%) and horizontal (") splits
+- navigation using prefix + arrow keys
+- closing panes and session behavior
+- created .tmux.conf and changed prefix key
+- understood real use (monitor + run commands in parallel)
+
 
