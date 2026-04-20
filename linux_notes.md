@@ -124,3 +124,29 @@ feat: add tmux basics (sessions, split panes, navigation, config)
 - understood real use (monitor + run commands in parallel)
 
 
+## Revision - 20 Apr (with practical)
+
+### File & Directory
+ls, cd, pwd, mkdir, rm, rmdir, touch, cp, mv
+
+### File Viewing
+cat, zcat, head, tail -f, less, more
+
+### Text Processing
+wc, cut, sort, diff, tee
+
+### Links
+ln (hard link, soft link)
+
+### System / Process
+ps, top, kill, nohup, free, vmstat
+
+### Disk
+df, du
+
+### Remote Access
+ssh
+
+### Editor
+vi basics
+
