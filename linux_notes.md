@@ -150,3 +150,9 @@ ssh
 ### Editor
 vi basics
 
+## Revision (Day 2)
+- Reviewed all previously learned Linux commands
+- Practiced scenario-based usage:
+  - file search + filtering
+  - permissions handling
+  - process management
