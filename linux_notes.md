@@ -156,3 +156,128 @@ vi basics
   - file search + filtering
   - permissions handling
   - process management
+
+## tmux
+
+### Purpose
+
+* Multiple terminals in one session
+* Prevent process loss after SSH disconnect
+
+---
+
+### Session Commands
+
+```bash
+tmux new -s dev
+tmux ls
+tmux attach -t dev
+tmux kill-session -t dev
+tmux kill-server
+```
+
+---
+
+### Window Shortcuts
+
+```bash
+Ctrl + b c   # new window
+Ctrl + b n   # next window
+Ctrl + b p   # previous window
+Ctrl + b &   # kill window
+```
+
+---
+
+### Pane Shortcuts
+
+```bash
+Ctrl + b %   # vertical split
+Ctrl + b "   # horizontal split
+Ctrl + b arrows  # move between panes
+```
+
+---
+
+### Detach / Attach
+
+```bash
+Ctrl + b d
+tmux attach -t <name>
+```
+
+---
+
+### Common Errors
+
+* nested session → already inside tmux → use `Ctrl + b d`
+* attach error → use `tmux attach -t <name>`
+* kill session → must use `-t`
+
+---
+
+### Minimal Config (~/.tmux.conf)
+
+```bash
+set -g mouse on
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
+```
+
+---
+
+## ss command
+
+### Purpose
+
+* Check ports and processes
+
+---
+
+### Commands
+
+```bash
+ss -lunp   # UDP ports
+ss -ltnp   # TCP ports
+ss -tulnp  # all ports
+```
+
+---
+
+### Options
+
+* l → listening
+* u → UDP
+* t → TCP
+* n → numeric
+* p → process
+
+---
+
+### Use Case
+
+* Check running services
+* Debug port issues
+
+---
+
+## Editors (nano & vim)
+
+### nano
+
+```bash
+Ctrl + O  # save
+Enter     # confirm
+Ctrl + X  # exit
+```
+
+---
+
+### vim
+
+```bash
+i        # insert mode
+Esc      # normal mode
+:wq      # save & exit
+:q!      # exit without saving
+```
+
