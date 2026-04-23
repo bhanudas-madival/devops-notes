@@ -279,5 +279,36 @@ i        # insert mode
 Esc      # normal mode
 :wq      # save & exit
 :q!      # exit without saving
-```
+
+## Linux Practice (Day)
+
+### File Transfer
+- scp: upload/download files using key
+- rsync:
+  - sync folders efficiently
+  - --dry-run for preview
+  - trailing / behavior (folder vs contents)
+  - difference between scp and rsync
+
+### Disk & Storage
+- lsblk vs df:
+  - lsblk → structure (disks, partitions)
+  - df → usage (space)
+- identified nvme disks (system vs free disks)
+- mount concept (attach disk to directory)
+
+### LVM
+- PV → VG → LV workflow
+- created and understood logical volumes
+- extend volume and resize filesystem
+
+### Permissions
+- chmod usage (400 for .pem key)
+- executable bit (x) and file color change
+
+### sed (log processing)
+- print matching lines: sed -n '/info/p'
+- case-insensitive: /info/I
+- print line number: {=;p}
+- use of -n, p, =, I flags
 
