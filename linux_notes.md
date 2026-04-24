@@ -311,4 +311,34 @@ Esc      # normal mode
 - case-insensitive: /info/I
 - print line number: {=;p}
 - use of -n, p, =, I flags
+feat: practice Linux storage management and advanced command revision
+
+* Practiced full LVM lifecycle on EC2:
+
+  * pvcreate, vgcreate, lvcreate
+  * filesystem creation with mkfs.ext4
+  * mounting logical volume and verification using df -h and lsblk
+  * permanent mount understanding with /etc/fstab and mount -a
+  * full rollback using umount, lvremove, vgremove, pvremove
+
+* Revised Linux storage concepts:
+
+  * PV, VG, LV architecture and LVM workflow
+  * mount points, /data vs /root/data difference
+  * /dev directory, disk naming (/dev/sda, /dev/nvme*)
+  * lost+found directory purpose
+  * root vs normal user prompt ($ vs #)
+
+* Practiced troubleshooting:
+
+  * resolved "target is busy" during umount using fuser and kill
+  * understood process handling for mounted filesystems
+
+* Revised networking and text-processing commands:
+
+  * nc -zv
+  * ss -lunp
+  * sed pattern matching, substitution, line numbers, ranges
+  * awk count patterns
+  * tmux kill-session
 
