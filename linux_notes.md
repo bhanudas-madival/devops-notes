@@ -342,3 +342,12 @@ feat: practice Linux storage management and advanced command revision
   * awk count patterns
   * tmux kill-session
 
+- revised sed command syntax and range usage
+- practiced awk vs sed differences
+- fixed scp directory copy using -r and SSH key path issues
+- revised rsync authentication and key troubleshooting
+- practiced curl GET requests, curl -X GET, and curl -s usage
+- revised ss -lunp for UDP listening ports
+- understood ps aux vs ps -ef option styles
+- completed LVM full lifecycle revision (PV → VG → LV → mount → fstab → rollback)
+- revised permanent mount using /etc/fstab and UUID
