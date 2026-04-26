@@ -351,3 +351,53 @@ feat: practice Linux storage management and advanced command revision
 - understood ps aux vs ps -ef option styles
 - completed LVM full lifecycle revision (PV → VG → LV → mount → fstab → rollback)
 - revised permanent mount using /etc/fstab and UUID
+
+## Content to append in notes file
+
+### Linux & DevOps Practice – 26-04-26
+
+* Revised complete LVM lifecycle:
+  PV → VG → LV → Filesystem → Mount → Extend → Reduce → Remove
+
+* Practiced:
+
+  * `pvcreate`
+  * `vgcreate`
+  * `lvcreate`
+  * `lvextend`
+  * `resize2fs`
+  * `lvreduce`
+  * `lvremove`
+  * `vgremove`
+  * `pvremove`
+
+* Learned:
+
+  * `grep` → searching
+  * `awk` → field-based processing
+  * `sed` → stream editing
+
+* Practiced:
+
+  * `wget` vs `curl`
+  * `scp` syntax and SSH key troubleshooting
+  * `nc -zv` for port testing
+  * `telnet` vs `nc`
+
+* AWS revision:
+
+  * EBS must be attached in same Availability Zone as EC2
+  * command to check EC2 AZ:
+    `curl http://169.254.169.254/latest/meta-data/placement/availability-zone`
+
+* Fixed WSL issue:
+
+  * `.profile` was not loading `.bashrc`
+  * added:
+    `if [ -f ~/.bashrc ]; then . ~/.bashrc; fi`
+
+* Fixed tmux:
+
+  * mouse support
+  * clipboard support
+  * persistent config via `.tmux.conf`
