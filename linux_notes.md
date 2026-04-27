@@ -401,3 +401,18 @@ feat: practice Linux storage management and advanced command revision
   * mouse support
   * clipboard support
   * persistent config via `.tmux.conf`
+
+
+## Git Revision - Branching, Logs, Tags, Rebase
+
+Revised important Git commands for DevOps:
+
+- branching and switching branches
+- merge and rebase workflow
+- local and remote branch inspection
+- commit history inspection using log/show/diff/blame
+- tag creation and pushing tags
+- reflog for recovery
+- pull request and fork workflow basics
+- prune remote references
+- archive and advanced fetch usage
