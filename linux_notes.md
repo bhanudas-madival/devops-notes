@@ -416,3 +416,23 @@ Revised important Git commands for DevOps:
 - pull request and fork workflow basics
 - prune remote references
 - archive and advanced fetch usage
+
+feat: Linux swap management hands-on practice and LVM snapshot basics
+
+* practiced complete Linux swap management workflow from creation to removal
+* checked RAM and swap usage using free -h and swapon --show
+* created swap file using fallocate and dd methods
+* understood dd command structure (if, of, bs, count) and size calculation
+* changed swapfile permissions using chmod 600 and learned security reason behind it
+* converted swapfile to swap area using mkswap
+* enabled and disabled swap using swapon and swapoff
+* verified active swap and understood PRIO (swap priority) concept
+* configured persistent swap using /etc/fstab
+* learned /swapfile none swap sw 0 0 entry breakdown
+* tested fstab safely using mount -a and mount -av
+* learned correct swap removal workflow
+* revised interview scenarios for memory full and inactive swap cases
+* understood fdisk -l usage and Linux LVM partition type 8e concept
+* started LVM snapshot basics and production use cases
+* learned why snapshots are used before risky upgrades, deployments, and patches
+
