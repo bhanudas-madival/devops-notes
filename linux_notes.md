@@ -436,3 +436,39 @@ feat: Linux swap management hands-on practice and LVM snapshot basics
 * started LVM snapshot basics and production use cases
 * learned why snapshots are used before risky upgrades, deployments, and patches
 
+## LVM Snapshot – Hands-on Practice
+
+### Setup
+- Created new VG `3n1data-vg` using free disk
+- Created LV `lv3` (10G) for lab
+- Formatted with ext4 and mounted on `/snaplab`
+
+### Snapshot Creation
+- Created snapshot `snap1` (2G) of `lv3`
+- Understood snapshot requires free VG space (cannot use 100%FREE)
+
+### COW (Copy-on-Write)
+- Snapshot stores only changed blocks, not full data
+- On modification:
+  - Old data → copied to snapshot
+  - New data → written to LV
+
+### Recovery Practice
+- Deleted file from LV
+- Mounted snapshot in read-only mode
+- Recovered file using:
+  cp /mnt/snap/file1.txt /snaplab/
+
+### Observations
+- `lvs` shows snapshot relation with Origin LV
+- `Data%` indicates snapshot usage
+- Snapshot becomes invalid if it reaches 100%
+
+### Key Commands
+pvcreate
+vgcreate / vgextend
+lvcreate
+lvcreate -s (snapshot)
+lvs
+mount -o ro
+cp (recovery)
