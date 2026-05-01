@@ -472,3 +472,53 @@ lvcreate -s (snapshot)
 lvs
 mount -o ro
 cp (recovery)
+
+## LVM Snapshot – Clean Setup (From Scratch)
+
+### Environment Reset
+- Removed old LVM setup (lv3, data-3lv confusion cleared)
+- Used fresh disk `/dev/nvme3n1` for clean lab
+
+### LVM Setup
+- Created Physical Volume (PV)
+  pvcreate /dev/nvme3n1
+
+- Created Volume Group (VG)
+  vgcreate lab-vg /dev/nvme3n1
+
+- Created Logical Volume (LV)
+  lvcreate -L 10G -n lab-lv lab-vg
+
+- Formatted and mounted
+  mkfs.ext4 /dev/lab-vg/lab-lv
+  mount /dev/lab-vg/lab-lv /lab
+
+### Snapshot Workflow (Correct Order)
+1. Created file BEFORE snapshot
+2. Created snapshot (lab-snap)
+3. Mounted snapshot as read-only
+4. Modified original file
+5. Compared live vs snapshot data
+
+### Key Observation
+- /lab → shows current data
+- /mnt/snap → shows old (snapshot) data
+- Snapshot only captures data present at creation time
+
+### COW (Copy-on-Write)
+- Old data copied to snapshot before modification
+- New data written to original LV
+- Snapshot reconstructs old state using COW
+
+### Common Mistakes Fixed
+- Using wrong paths (/lv3 vs /data-lv3)
+- Creating file after snapshot
+- Mount option typo (-o -ro)
+- Not verifying mount points
+
+### Commands Practiced
+pvcreate, vgcreate, lvcreate
+mkfs.ext4, mount
+lvcreate -s (snapshot)
+lvs, df -h
+tee, cat
