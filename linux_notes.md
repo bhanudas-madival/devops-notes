@@ -522,3 +522,57 @@ mkfs.ext4, mount
 lvcreate -s (snapshot)
 lvs, df -h
 tee, cat
+
+# LVM Snapshot - Recovery & Failure
+
+## Snapshot behavior
+- Snapshot stores old data using copy-on-write (COW)
+- New files after snapshot are not visible in snapshot
+- Modified/deleted files remain unchanged in snapshot
+
+## File-level recovery
+- Mount snapshot
+- Copy required file from snapshot to original LV
+
+## Full rollback
+- Unmount original and snapshot
+- Merge snapshot into original LV
+- Reactivate or reboot
+- Mount again
+
+## Snapshot limitation
+- Snapshot size is limited (COW)
+- If COW becomes full → snapshot becomes invalid
+- Cannot use snapshot after overflow
+
+---
+
+# Swap Management
+
+## Check swap
+free -h
+swapon --show
+
+## Create swap file
+fallocate -l 1G /swapfile
+
+## Permissions
+chmod 600 /swapfile
+
+## Setup swap
+mkswap /swapfile
+
+## Enable swap
+swapon /swapfile
+
+## Make persistent
+/etc/fstab entry:
+/swapfile none swap sw 0 0
+
+## Disable swap
+swapoff /swapfile
+
+## Remove swap
+rm /swapfile
+
+
