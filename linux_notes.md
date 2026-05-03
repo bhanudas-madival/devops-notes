@@ -576,3 +576,33 @@ swapoff /swapfile
 rm /swapfile
 
 
+Linux: Swap, LVM Snapshot, Process Management + Disk Practice
+
+- Practiced swap management:
+  - Created and enabled swap file
+  - Understood swappiness and swap priority
+  - Used swapon / swapoff
+
+- Worked on LVM:
+  - Learned PV → VG → LV flow
+  - Practiced LV extend and reduce
+  - Understood importance of e2fsck before shrinking
+  - Studied LVM snapshots (concept + use cases)
+
+- Performed disk operations:
+  - Partitioned disk using fdisk
+  - Handled existing filesystem signature
+  - Created ext4 filesystem
+  - Mounted disk and updated /etc/fstab
+  - Debugged "device in use" (fdisk process issue)
+
+- Practiced filesystem tools:
+  - Used e2fsck for filesystem check
+  - Learned resize2fs for resizing
+
+- Learned process management:
+  - Used ps, top, pgrep
+  - Understood process states (S, S+, T)
+  - Practiced bg, fg, jobs
+  - Learned kill vs kill -9
+  - Identified high CPU processes using top
