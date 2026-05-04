@@ -606,3 +606,8 @@ Linux: Swap, LVM Snapshot, Process Management + Disk Practice
   - Practiced bg, fg, jobs
   - Learned kill vs kill -9
   - Identified high CPU processes using top
+
+
+Added Linux swap management practice
+Practiced process management commands and debugging
+Completed LVM snapshot lab (create, mount, merge, restore)
