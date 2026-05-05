@@ -611,3 +611,167 @@ Linux: Swap, LVM Snapshot, Process Management + Disk Practice
 Added Linux swap management practice
 Practiced process management commands and debugging
 Completed LVM snapshot lab (create, mount, merge, restore)
+
+# 📘 Linux Learning Notes — 05 May 2026
+
+## 🔹 Process Management
+
+### Process States
+
+* **Foreground**: Runs in terminal, blocks it
+* **Background**: Runs without blocking terminal
+* **D State**: Uninterruptible sleep (waiting for I/O, cannot be killed)
+* **Zombie (Z State)**: Process finished but not cleaned (parent didn’t call `wait()`)
+
+### Signals
+
+* **SIGTERM (15)** → graceful kill (safe shutdown)
+* **SIGKILL (9)** → force kill (immediate stop)
+
+### Commands
+
+```bash
+ps aux
+pgrep <process>
+kill <PID>
+kill -9 <PID>
+jobs
+fg
+bg
+```
+
+---
+
+## 🔹 Swap Management
+
+### Create Swap File
+
+```bash
+fallocate -l 1G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+```
+
+### Check Usage
+
+```bash
+free -h
+swapon --show
+```
+
+### Concept
+
+* Swap = disk used as memory
+* **Swappiness** controls how aggressively swap is used
+
+---
+
+## 🔹 LVM (Logical Volume Management)
+
+### Check Space
+
+```bash
+vgs
+vgdisplay
+lvs
+```
+
+### Key Concepts
+
+* VG = pool of storage
+* LV = logical partition
+* PE = smallest allocation unit
+
+---
+
+### Extend LV (Safe)
+
+```bash
+lvextend -r -L +2G /dev/data-vg/data-lv
+```
+
+---
+
+### Reduce LV (Important Order)
+
+```bash
+umount
+e2fsck -f
+resize2fs (new size)
+lvreduce
+mount
+```
+
+⚠️ Always shrink filesystem before reducing LV
+
+---
+
+## 🔹 LVM Snapshot
+
+### Create Snapshot
+
+```bash
+lvcreate -L 1G -s -n snap1 /dev/data-vg/data-lv
+```
+
+### Merge Snapshot (Rollback)
+
+```bash
+lvconvert --merge /dev/data-vg/snap1
+```
+
+### Concept
+
+* Uses **Copy-on-Write (COW)**
+* Stores only changed data
+
+### Snapshot Full
+
+* Snapshot becomes invalid
+* Cannot be used for recovery
+
+---
+
+## 🔹 Disk & I/O Troubleshooting
+
+### Check Disk Usage
+
+```bash
+df -h
+lsblk
+```
+
+### Check Disk Performance
+
+```bash
+iostat
+```
+
+### Key Metric
+
+* **%iowait** → high = disk bottleneck
+
+---
+
+## 🔹 Troubleshooting Mindset
+
+Problems are categorized into:
+
+
+* CPU → `top`
+* Memory → `free`, `vmstat`
+* Disk → `df`, `iostat`
+* Process → `ps`, `kill`
+* Logs → `journalctl`
+
+---
+
+## 🎯 Key Takeaways
+
+* Always follow correct order in LVM operations
+* Zombie processes occur due to missing `wait()`
+* Use `iostat` to detect disk I/O issues
+* Snapshot size depends on write activity
+* D state processes cannot be killed
+
