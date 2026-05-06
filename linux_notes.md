@@ -775,3 +775,36 @@ Problems are categorized into:
 * Snapshot size depends on write activity
 * D state processes cannot be killed
 
+# 06 May 2026
+
+## tmux
+- Terminal multiplexer for persistent sessions
+- `tmux new -s session`
+- `tmux ls`
+- `tmux attach -t session`
+- `Ctrl+b d` → detach session
+
+## Swap
+- Swap = disk-based virtual memory
+- Swap setup flow:
+  create file → chmod 600 → mkswap → swapon
+- `free -h`
+- `swapon --show`
+
+## LVM Snapshot
+- Snapshot already contains filesystem/data
+- Snapshot does NOT need `mkfs.ext4`
+- Snapshot merge restores old LV state
+
+## Important Learning
+- Unmounted ≠ inactive
+- Same LV can have multiple mount points
+- All mount points must be unmounted before immediate snapshot merge
+
+## Useful Commands
+```bash
+sudo lvcreate -L 1G -s -n data-snap /dev/data-vg/data-lv
+sudo lvconvert --merge /dev/data-vg/data-snap
+sudo lvchange -an /dev/data-vg/data-lv
+sudo lvchange -ay /dev/data-vg/data-lv
+
