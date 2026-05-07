@@ -808,3 +808,77 @@ sudo lvconvert --merge /dev/data-vg/data-snap
 sudo lvchange -an /dev/data-vg/data-lv
 sudo lvchange -ay /dev/data-vg/data-lv
 
+# 📘 Linux Notes — 07 May 2026
+
+## SCP
+
+```bash
+scp user@server:/path/file .
+scp -i ~/key.pem ubuntu@server:/home/ubuntu/file.txt .
+scp -i ~/key.pem -r ubuntu@server:/home/ubuntu/project .
+```
+
+## REST API
+
+```bash
+curl https://jsonplaceholder.typicode.com/users
+```
+
+## Hostname
+
+```bash
+hostname
+```
+
+## LVM
+
+```bash
+sudo lvcreate -l 100%FREE -n data-lv data-vg
+sudo lvs
+sudo lvremove /dev/data-vg/data-lv
+sudo vgremove data-vg
+```
+
+## LVM Rollback
+
+```bash
+sudo umount /mnt/data
+sudo lvremove /dev/data-vg/data-lv
+sudo vgremove data-vg
+sudo pvremove /dev/xvdf
+```
+
+## FSTAB Recovery
+
+```bash
+sudo cp /etc/fstab.backup /etc/fstab
+sudo mount -a
+```
+
+## Swap
+
+```bash
+free -h
+sudo swapon --show
+sudo fallocate -l 1G /swapfile
+sudo dd if=/dev/zero of=/swapfile bs=1M count=1024
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+sudo swapoff /swapfile
+cat /proc/sys/vm/swappiness
+sudo sysctl vm.swappiness=10
+```
+
+## Process Management
+
+```bash
+ps aux
+htop
+pgrep nginx
+kill 1234
+kill -9 1234
+pkill -9 nginx
+jobs
+fg
+bg
