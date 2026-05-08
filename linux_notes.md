@@ -882,3 +882,34 @@ pkill -9 nginx
 jobs
 fg
 bg
+## Users & Groups
+
+- `useradd -m user` → create user with home directory
+- `passwd user` → set/change password
+- `passwd -d user` → remove password
+- `usermod -aG group user` → add user to group
+- `passwd -S user` → check password status
+- `/etc/passwd` → user info
+- `/etc/shadow` → password hashes
+- `/etc/group` → group info
+- UID >=1000 usually normal users, lower UIDs mostly system/service accounts
+
+## Ownership & Permissions
+
+- `chown user file` → change owner
+- `chown :group file` → change group
+- `chown user:group file` → change owner & group
+- `chmod 755 file` → rwxr-xr-x
+- `chmod u+x file` → add execute to owner
+- `chmod g-w file` → remove write from group
+- Directory permissions:
+  - `r` → list files
+  - `w` → create/delete files
+  - `x` → enter directory
+
+## umask
+
+- `umask` → check default permission mask
+- `022` → files 644, dirs 755
+- `077` → files 600, dirs 700
+- umask removes permissions from defaults
