@@ -913,3 +913,87 @@ bg
 - `022` → files 644, dirs 755
 - `077` → files 600, dirs 700
 - umask removes permissions from defaults
+## Users & Permissions
+
+### User & Group Management
+
+- useradd -m username
+- groupadd devteam
+- usermod -aG devteam username
+- id username
+- groups username
+
+### Important Files
+
+- /etc/passwd -> user account info
+- /etc/shadow -> password hashes + password aging
+
+### File Permissions
+
+- chmod
+- chown
+- symbolic permissions:
+  - chmod u+x file
+  - chmod g-w file
+
+- numeric permissions:
+  - 7 = rwx
+  - 6 = rw-
+  - 5 = r-x
+  - 4 = r--
+
+### umask
+
+- default file permissions -> 666
+- default directory permissions -> 777
+
+Example:
+- umask 022
+- files -> 644
+- dirs -> 755
+
+- umask removes permissions from default values
+
+### Special Permissions
+
+#### SUID
+
+- chmod u+s file
+- executes with file owner permissions
+
+#### SGID
+
+- chmod 2770 /project
+- new files inherit parent directory group
+
+#### Sticky Bit
+
+- chmod +t /shared
+- protects files in shared directories
+- users cannot delete others' files
+- commonly used on /tmp
+
+### Shared Directory Practice
+
+- created shared project directory
+- group-based access control
+- restricted outsider access
+- tested permission denied scenarios
+
+### ACL (Access Control Lists)
+
+- setfacl
+- getfacl
+
+Example:
+- setfacl -m u:qauser:rw project.txt
+
+- allows user-specific permissions without changing ownership/group
+
+### Process Handling
+
+- ps aux | grep user
+- pkill -u user
+- userdel -r user
+
+- learned why userdel fails when user processes are active
