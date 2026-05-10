@@ -997,3 +997,42 @@ Example:
 - userdel -r user
 
 - learned why userdel fails when user processes are active
+# 📘 Linux Learning Notes — 10 May 2026
+
+## 🔹 Users & Groups
+
+- Created users using:
+  - `useradd`
+  - `passwd`
+- Created groups using:
+  - `groupadd`
+- Added users to groups:
+  - `usermod -aG`
+
+## 🔹 User Information Files
+
+- `/etc/passwd`
+  - stores user account details
+  - readable by all users
+- `/etc/shadow`
+  - stores encrypted password hashes
+  - accessible only by root
+
+## 🔹 File Permissions
+
+- Practiced:
+  - `chmod`
+  - `chown`
+  - symbolic permissions
+  - numeric permissions
+- Observed Linux permission flow:
+  - owner
+  - group
+  - others
+  - ACL
+
+## 🔹 SGID
+
+- Applied SGID on shared directory:
+  ```bash
+  chmod 2770 /project
