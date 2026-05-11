@@ -1036,3 +1036,69 @@ Example:
 - Applied SGID on shared directory:
   ```bash
   chmod 2770 /project
+## Linux Notes - 11 May 2026
+
+### File Permissions & Group Ownership
+- Files created inside SGID directories inherit group ownership
+- File permissions still depend on user umask
+- `rw-r--r--` means:
+  - owner = read/write
+  - group = read only
+  - others = read only
+- Group members cannot edit file unless group write permission exists
+
+### Useful Permission Commands
+```bash
+ls -l
+ls -ld
+chmod
+chown
+groups
+id
+namei -l <path>
+```
+
+### Important Permission Understanding
+- File delete permission depends on directory permissions
+- Directory write permission controls create/delete operations
+- Execute permission on directory allows entering/accessing directory
+- Read permission on directory allows listing contents
+
+### SGID Notes
+- SGID on directory makes new files inherit directory group ownership
+- SGID does not automatically give group write permission
+
+### SUID Notes
+- SUID allows executable to run with file owner's privileges
+- `/usr/bin/passwd` uses SUID so normal users can update passwords
+- Password hashes are stored in `/etc/shadow`
+
+### /etc/passwd vs /etc/shadow
+- `/etc/passwd` stores:
+  - username
+  - UID
+  - GID
+  - home directory
+  - shell
+- `/etc/shadow` stores:
+  - hashed passwords
+  - password aging information
+
+### Process & Job Control Revision
+```bash
+jobs
+bg
+fg
+pgrep
+kill
+kill -9
+top
+htop
+```
+
+### Labs Practiced
+- Shared directory with SGID
+- Group ownership inheritance testing
+- Permission denied troubleshooting
+- SUID behavior understanding
+- Process and background job handling
