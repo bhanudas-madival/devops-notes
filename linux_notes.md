@@ -1102,3 +1102,81 @@ htop
 - Permission denied troubleshooting
 - SUID behavior understanding
 - Process and background job handling
+
+# 📘 Linux Notes — 12 May 2026
+
+## 🔹 ACL (Access Control List)
+
+### ACL Basics
+
+- `setfacl -m` → modify ACL entries
+- `getfacl <file/dir>` → view ACLs
+- `+` in `ls -l` output means ACL exists
+
+### ACL Entry Types
+
+- `u:name:perm` → named user ACL
+- `g:name:perm` → named group ACL
+- `u::perm` → owner permissions
+- `g::perm` → owning group permissions
+- `m::perm` → ACL mask
+- `o::perm` → others permissions
+
+### ACL Mask
+
+- Mask controls group-related permissions
+- Mask affects:
+  - named users
+  - named groups
+  - owning group
+- Mask does NOT affect:
+  - owner
+  - others
+
+### Effective Permissions
+
+- ACL entry permissions can differ from effective permissions
+- `#effective:` appears when mask restricts permissions
+
+Example:
+
+group::rwx
+mask::r--
+effective → r--
+
+### Directory Permission Behavior
+
+Directory permissions meaning:
+- `r` → list filenames
+- `w` → create/delete/rename
+- `x` → enter/traverse directory
+
+Behavior with only `r--` on directory:
+- `ls /project` works
+- `cd /project` fails
+- cannot access inside files/directories
+
+### SGID on Directories
+
+- `chmod 2750 /project`
+- SGID on directory makes new files inherit group ownership
+- `rws` → SGID + execute
+- `r-S` → SGID set but execute missing
+
+### Shell / Prompt Learning
+
+- `Ctrl + L` may fail in `sh/dash`
+- `bash` supports PS1 formatting like:
+  - `\u` → username
+  - `\h` → hostname
+  - `\w` → current directory
+
+### Useful Commands
+
+```bash
+getfacl /project
+setfacl -m u:qauser:r-x /project
+setfacl -m m::r-- /project
+groups ubuntu
+echo $SHELL
+ps -p $$
