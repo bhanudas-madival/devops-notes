@@ -1180,3 +1180,93 @@ setfacl -m m::r-- /project
 groups ubuntu
 echo $SHELL
 ps -p $$
+
+# Linux Notes - 13 May 2026
+
+## Special Permissions
+- Sticky bit:
+  - `chmod 1777 dir`
+  - only file owner/root/directory owner can delete files
+  - does NOT control file content write access
+- SGID on directory:
+  - `chmod 2775 dir`
+  - new files inherit directory group
+- SUID:
+  - `find /usr/bin -perm -4000`
+  - program runs with owner privileges temporarily
+  - `passwd` uses SUID root to update `/etc/shadow`
+
+## passwd and shadow
+- `/usr/bin/passwd` = program/tool
+- `/etc/shadow` = password hash storage
+- normal users cannot edit shadow directly
+- passwd temporarily gets root effective UID via SUID
+
+## Networking / Transfer
+- Check port:
+  - `nc -zv google.com 443`
+- SCP download:
+  - `scp -i key.pem user@host:/path/file .`
+- SCP compression:
+  - `scp -C`
+- rsync compression:
+  - `rsync -avz`
+
+## tmux
+- List sessions:
+  - `tmux ls`
+- Detach:
+  - `Ctrl+b d`
+
+## LVM
+- Extend LV:
+  - `lvextend -L +5G`
+  - `resize2fs`
+- Safe ext4 reduce order:
+  - `umount`
+  - `e2fsck -f`
+  - `resize2fs`
+  - `lvreduce`
+  - `mount`
+- XFS:
+  - extend supported
+  - shrink unsupported
+- Snapshot:
+  - `lvcreate -L 2G -s -n snapshot /dev/vg/lv`
+  - `lvconvert --merge`
+- Snapshot full:
+  - becomes invalid/unusable
+
+## Swap
+- Create:
+  - `fallocate -l 1G /swapfile`
+- Enable:
+  - `swapon /swapfile`
+- Disable:
+  - `swapoff /swapfile`
+- Check:
+  - `swapon --show`
+  - `free -h`
+
+## sed / grep / cut
+- Replace first 10 lines:
+  - `sed -i '1,10 s/INFO/LOG/g' sample.log`
+- Print only first 10 modified lines:
+  - `sed -n '1,10 { s/INFO/LOG/g; p }' sample.log`
+- grep with line numbers:
+  - `grep -n 'INFO' sample.log`
+- cut extracts:
+  - fields/columns
+
+## Process Management
+- Graceful kill:
+  - `kill <PID>`
+- Find PID:
+  - `pgrep process_name`
+- Background stopped job:
+  - `bg`
+- D state:
+  - uninterruptible sleep (usually I/O wait)
+
+## LVM Flow
+- Disk -> PV -> VG -> LV -> Filesystem -> Mountpoint -> fstab
