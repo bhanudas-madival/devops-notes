@@ -1270,3 +1270,71 @@ ps -p $$
 
 ## LVM Flow
 - Disk -> PV -> VG -> LV -> Filesystem -> Mountpoint -> fstab
+# Linux Notes - 14 May 2026
+
+## Process Management & Debugging
+
+- View processes:
+  ps
+  ps aux
+  top
+  htop
+
+- PID = unique Process ID for running process
+
+- TTY identifies terminal session:
+  tty
+
+- Find process:
+  pgrep process_name
+  ps aux | grep process_name
+
+- Background process:
+  sleep 300 &
+
+- Show shell jobs:
+  jobs
+
+- Stop foreground process:
+  Ctrl + Z
+
+- Move stopped job to background:
+  bg
+
+- Bring process to foreground:
+  fg
+
+- Kill process gracefully:
+  kill PID
+  Default signal = SIGTERM (15)
+
+- Force kill:
+  kill -9 PID
+  Signal = SIGKILL (9)
+
+- Zombie process:
+  Finished execution but parent has not collected exit status using wait()
+
+- D state:
+  Uninterruptible sleep usually waiting for I/O operation
+
+- Create CPU load:
+  yes > /dev/null &
+
+- Monitor high CPU:
+  top
+  ps aux --sort=-%cpu
+
+- Nice value:
+  Higher nice = lower priority
+
+- Change priority:
+  renice 10 -p PID
+
+- top shortcuts:
+  Shift + P -> sort by CPU
+  Shift + M -> sort by memory
+  d -> change refresh interval
+  q -> quit
+
+
