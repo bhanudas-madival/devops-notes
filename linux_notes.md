@@ -1338,3 +1338,92 @@ ps -p $$
   q -> quit
 
 
+## Process Management & Disk Troubleshooting
+
+### Process Management
+- Used:
+  ```bash
+  ps
+  ps aux
+  pgrep
+  top
+  htop
+  ```
+- Practiced background and foreground jobs:
+  ```bash
+  jobs
+  bg
+  fg
+  ```
+- Created background processes:
+  ```bash
+  sleep 1000 &
+  ```
+- Learned process states:
+  - `R` = Running
+  - `S` = Sleeping
+  - `T` = Stopped
+  - `Z` = Zombie
+  - `D` = Uninterruptible sleep
+- Observed zombie process check:
+  ```bash
+  ps -el | grep ' Z '
+  ```
+- Learned:
+  - `kill PID` → graceful termination using SIGTERM(15)
+  - `kill -9 PID` → force kill using SIGKILL(9)
+- Created CPU load:
+  ```bash
+  yes > /dev/null &
+  ```
+- Sorted processes:
+  ```bash
+  ps aux --sort=-%cpu
+  ```
+- Learned difference:
+  - `yes /dev/null &` → prints `/dev/null`
+  - `yes > /dev/null &` → discards output silently
+- Learned nice/renice:
+  ```bash
+  nice -n 10 command
+  renice 5 -p PID
+  ```
+- Learned:
+  - higher nice value = lower priority
+  - lower nice value = higher priority
+
+### Disk & Storage Troubleshooting
+- Checked filesystem usage:
+  ```bash
+  df -h
+  ```
+- Checked inode usage:
+  ```bash
+  df -i
+  ```
+- Found large directories/files:
+  ```bash
+  du -sh *
+  du -ah . | sort -rh | head
+  ```
+- Learned difference:
+  - `df` → filesystem usage
+  - `du` → file/directory usage
+- Simulated disk usage:
+  ```bash
+  fallocate -l 100M file1
+  ```
+- Explored mounted filesystems:
+  ```bash
+  mount
+  lsblk
+  ```
+- Explored persistent mounts:
+  ```bash
+  cat /etc/fstab
+  ```
+- Learned:
+  ```bash
+  mount -a
+  ```
+  tests all mounts from `/etc/fstab`
