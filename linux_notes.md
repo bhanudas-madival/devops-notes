@@ -1427,3 +1427,165 @@ ps -p $$
   mount -a
   ```
   tests all mounts from `/etc/fstab`
+# linux_notes.md
+
+## Disk Usage & Troubleshooting
+
+### df vs du
+- `df -h` -> filesystem level disk usage
+- `du -sh *` -> directory/file usage
+- `df` checks filesystem/block device usage
+- `du` checks actual file/directory consumption
+
+### Useful du Commands
+
+```bash
+du -sh *
+du -ah . | sort -rh | head
+du -ah / | sort -rh | head -20
+```
+
+- `-s` -> summary only
+- `-h` -> human readable
+- `-a` -> include files
+- `sort -rh` -> reverse human readable sorting
+
+### Disk Full Troubleshooting Flow
+
+```bash
+df -h
+du -sh /*
+du -ah / | sort -rh | head -20
+rm unwanted_file
+df -h
+```
+
+### fallocate
+
+Creates large files quickly.
+
+```bash
+fallocate -l 500M bigfile
+```
+
+### lsblk Understanding
+
+- `disk` -> physical/virtual disk
+- `part` -> partition
+- `loop` -> kernel-created virtual block devices
+
+### fstab Concepts
+
+- `/etc/fstab` used for persistent mounts
+- UUID preferred over `/dev/sdb1`
+
+Verify fstab safely:
+
+```bash
+umount /data
+mount -a
+```
+
+Example:
+
+```bash
+UUID=<uuid> /data ext4 defaults,nofail 0 2
+```
+
+### mount -a
+
+Mounts all filesystems from `/etc/fstab`.
+
+### Swap Commands
+
+```bash
+swapon --show
+free -h
+sysctl vm.swappiness
+cat /proc/sys/vm/swappiness
+```
+
+### Create Swap File
+
+```bash
+dd if=/dev/zero of=/swapfile bs=1M count=1024
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+```
+
+### Process Management
+
+```bash
+ps aux
+kill -9 PID
+bg
+fg
+```
+
+### LVM Flow
+
+```text
+Disk/Partition -> PV -> VG -> LV -> Filesystem -> Mount Point -> fstab
+```
+
+### Safe LV Reduce Flow
+
+```bash
+umount
+e2fsck
+resize2fs
+lvreduce
+mount
+```
+
+- filesystem must shrink before LV reduce
+- reducing incorrectly can corrupt data
+
+### SGID
+
+- SGID on directory inherits parent group ownership
+- useful for shared directories
+
+### User & Group Concepts
+
+- `/etc/passwd` -> user account information
+- `/etc/shadow` -> password hashes + aging/security info
+- `/etc/group` -> group information
+
+### UID Ranges
+
+- UID 0 -> root
+- UID 1-999 -> system/service accounts
+- UID >=1000 -> normal users
+
+### User Management
+
+```bash
+useradd -m username
+passwd username
+groupadd groupname
+usermod -aG groupname username
+id
+```
+
+### Lock User
+
+```bash
+passwd -l username
+usermod -L username
+```
+
+### SUID vs SGID
+
+- SUID -> execute with file owner privileges
+- SGID -> execute/inherit with file group privileges
+
+### Loop Device Lab
+
+```bash
+losetup -fP /root/lvm_disk.img
+```
+
+- attaches image file as virtual block device
+- useful for LVM/filesystem labs
