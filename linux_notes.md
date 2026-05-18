@@ -1752,3 +1752,166 @@ Important:
 
 ### jobs Command
 - shows shell background/suspended jobs only
+/
+
+
+
+## Logs & Debugging Notes
+
+### Important Log Locations
+
+| File/Directory | Purpose |
+|---|---|
+| `/var/log/syslog` | General system logs |
+| `/var/log/auth.log` | Authentication, sudo, SSH logs |
+| `/var/log/kern.log` | Kernel logs |
+| `/var/log/dpkg.log` | Package installation logs |
+| `/var/log/journal/` | systemd journal storage |
+
+### Traditional Logging vs systemd Journal
+
+Traditional logging:
+- Separate plain text log files
+- Managed by rsyslog/syslog
+- Logs categorized into different files
+
+Examples:
+- auth.log
+- syslog
+- kern.log
+
+Modern systemd journal:
+- Centralized logging system
+- Managed by `systemd-journald`
+- Viewed using `journalctl`
+- Supports filtering by:
+  - service
+  - priority
+  - boot
+  - time
+
+### Important journalctl Commands
+
+```bash
+journalctl
+```
+
+View all logs
+
+```bash
+journalctl -n 20
+```
+
+- `-n` = show recent lines
+
+```bash
+journalctl -f
+```
+
+- `-f` = follow logs live
+
+```bash
+journalctl -u ssh
+```
+
+- `-u` = filter by service/unit
+
+```bash
+journalctl -b
+```
+
+- `-b` = logs from current boot
+
+```bash
+journalctl -b -1
+```
+
+- `-1` = previous boot
+
+```bash
+journalctl -p err
+```
+
+- `-p` = priority/severity filter
+- `err` = show error level logs
+
+```bash
+journalctl -u ssh --no-pager
+```
+
+- `--no-pager` = print directly to terminal without opening less
+
+### Log Severity Levels
+
+| Level | Meaning |
+|---|---|
+| emerg | system unusable |
+| alert | immediate action required |
+| crit | critical issue |
+| err | error |
+| warning | warning |
+| notice | important normal event |
+| info | informational |
+| debug | debugging details |
+
+### logger Command
+
+```bash
+logger "message"
+```
+
+Used to manually generate custom log entries into:
+- syslog
+- journalctl
+
+Examples practiced:
+
+```bash
+logger "This is test log from ram"
+logger "this is hello from ubuntu"
+```
+
+### less Search Practice
+
+Inside `less`:
+- `/word` = search
+- `n` = next match
+- `N` = previous match
+- `Shift + G` = go bottom
+- `g` = go top
+- `q` = quit
+
+### systemd Notes
+
+```bash
+ps -p 1
+```
+
+Verified:
+- PID 1 = systemd
+
+systemd responsibilities:
+- service management
+- boot process
+- logging
+- process supervision
+
+### SSH Log Understanding
+
+Observed successful SSH login logs:
+- `Accepted publickey`
+- `pam_unix(sshd:session)`
+- source IP address
+- SSH key authentication
+
+### Important Troubleshooting Workflow
+
+```text
+Issue
+→ systemctl status service
+→ journalctl -u service
+→ identify actual error
+→ fix issue
+→ restart service
+→ verify
+```
