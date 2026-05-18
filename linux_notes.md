@@ -1574,8 +1574,7 @@ id
 ```bash
 passwd -l username
 usermod -L username
-```
-
+``
 ### SUID vs SGID
 
 - SUID -> execute with file owner privileges
@@ -1589,3 +1588,167 @@ losetup -fP /root/lvm_disk.img
 
 - attaches image file as virtual block device
 - useful for LVM/filesystem labs
+ 
+
+## LVM & Snapshot Practical Notes
+
+### Create Virtual Disk for LVM
+- `sudo dd if=/dev/zero of=/root/lvm_disk.img bs=1M count=2048`
+- creates 2GB virtual disk image file
+
+### Attach Virtual Disk as Loop Device
+- `sudo losetup -fP /root/lvm_disk.img`
+- `-f` -> find first free loop device
+- `-P` -> scan partitions
+- loop devices behave like virtual disks backed by files
+- snap packages also use loop devices
+
+### Verify Loop Devices
+- `losetup -a`
+- `lsblk`
+
+### LVM Flow
+Disk/Loop Device -> PV -> VG -> LV -> Filesystem -> Mount Point
+
+### Create LVM
+- `sudo pvcreate /dev/loop4`
+- `sudo vgcreate data-vg /dev/loop4`
+- `sudo lvcreate -L 2G -n data-lv data-vg`
+
+### Create Filesystem & Mount
+- `sudo mkfs.ext4 /dev/data-vg/data-lv`
+- `sudo mkdir /data`
+- `sudo mount /dev/data-vg/data-lv /data`
+
+### Important LVM Commands
+- `sudo pvs`
+- `sudo vgs`
+- `sudo lvs`
+- `lsblk`
+
+### LVM Attribute Meanings
+- `o` -> origin LV
+- `O` -> origin LV under merge
+- `s` -> snapshot
+- `w` -> writable
+- `a` -> active
+- `I` -> invalid snapshot
+- `i` -> inherited allocation policy
+
+### Ext4 LVM Reduction Workflow
+Correct order:
+- umount -> e2fsck -> resize2fs -> lvreduce -> mount
+
+Commands:
+- `sudo umount /data`
+- `sudo e2fsck -f /dev/data-vg/data-lv`
+- `sudo resize2fs /dev/data-vg/data-lv 1536M`
+- `sudo lvreduce -L 1536M /dev/data-vg/data-lv`
+
+Important:
+- reduce filesystem first before reducing LV
+- reducing LV first can corrupt filesystem
+
+### Snapshot Creation
+- `sudo lvcreate -L 300M -s -n snap-lv /dev/data-vg/data-lv`
+
+### Mount Snapshot Read-Only
+- `sudo mount -o ro /dev/data-vg/snap-lv /snap`
+
+### Snapshot Concepts
+- snapshots use Copy-On-Write (COW)
+- snapshot stores changed blocks only
+- deleting file does not immediately increase snapshot size
+- overwriting/reusing blocks increases snapshot Data%
+- snapshot preserves point-in-time filesystem state
+
+### Snapshot Overflow
+- small snapshot + heavy writes -> invalid snapshot
+- `I` in lvs output means invalid snapshot
+
+### Snapshot Merge
+- `sudo lvconvert --merge /dev/data-vg/snap-lv`
+- restores origin LV to snapshot state
+- newer data after snapshot creation is lost after rollback
+
+### Activate/Deactivate LV
+- `sudo lvchange -an /dev/data-vg/data-lv`
+- `sudo lvchange -ay /dev/data-vg/data-lv`
+
+Important:
+- `-an` -> deactivate LV
+- `-ay` -> activate LV
+- inactive LV cannot be mounted
+
+### Cleanup LVM Lab
+- `sudo umount /data`
+- `sudo lvremove /dev/data-vg/data-lv`
+- `sudo vgremove data-vg`
+- `sudo pvremove /dev/loop4`
+- `sudo losetup -d /dev/loop4`
+- `sudo rm -f /root/lvm_disk.img`
+
+---
+
+## Linux Permissions Notes
+
+### Sticky Bit
+- `drwxrwxrwt`
+- only owner/root can delete respective files
+- common example: `/tmp`
+
+### SGID
+- `drwxrws---`
+- new files inherit parent directory group ownership
+
+### SUID
+- `-rwsr-xr-x`
+- executable runs with owner privileges
+- example: `passwd`
+
+### ACL Commands
+- `sudo setfacl -m u:user:rx /project`
+- `sudo getfacl /project`
+
+Important:
+- ACL provides user-specific permissions without changing groups
+
+### Umask Concepts
+- `666 - 022 = 644`
+- `666 - 002 = 664`
+- `777 - 022 = 755`
+
+Important:
+- umask removes permissions from defaults
+- `0002` useful for collaborative environments
+
+---
+
+## Process Management Notes
+
+### Process Commands
+- `ps`
+- `ps aux`
+- `jobs`
+- `tty`
+
+### Process Concepts
+- PID -> unique process identifier
+- foreground process blocks terminal
+- background process does not block terminal
+
+### Background Jobs
+- `sleep 100 &`
+- `&` runs process in background
+
+### Suspend Process
+- `Ctrl + Z`
+- sends SIGTSTP
+- temporarily suspends foreground process
+
+### Resume Jobs
+- `fg`
+- `bg`
+
+### jobs Command
+- shows shell background/suspended jobs only
