@@ -1915,3 +1915,127 @@ Issue
 → restart service
 → verify
 ```
+
+## 2026-05-19
+
+### systemd & Services Debugging
+- Used `systemctl list-units --type=service --state=running` to inspect running services
+- Learned difference between:
+  - `systemctl` → service management/status
+  - `journalctl` → log inspection
+- Checked SSH service state using:
+  - `systemctl status ssh`
+  - `journalctl -u ssh`
+- Practiced:
+  - `start`
+  - `stop`
+  - `restart`
+  - `enable`
+  - `disable`
+- Understood:
+  - `active (running)`
+  - `inactive (dead)`
+  - `failed (exit-code)`
+- Learned service uptime interpretation from `systemctl status`
+- Observed SSH daemon logs:
+  - successful logins
+  - invalid users
+  - authentication failures
+  - bot SSH scans on public EC2
+
+### Service Failure Debugging
+- Intentionally broke SSH config in `/etc/ssh/sshd_config`
+- Observed failed restart behavior:
+  - restart loops
+  - `Start request repeated too quickly`
+  - `status=255/EXCEPTION`
+- Used:
+  - `journalctl -xeu ssh.service`
+  - `sudo sshd -t`
+- Identified exact parsing/configuration error:
+  - `Bad configuration option: INVALIDCONFIG`
+- Learned:
+  - systemd logs show service lifecycle/errors
+  - application validation tools reveal exact root cause
+
+### SSH Recovery Workflow
+- Fixed invalid SSH config
+- Solved runtime error:
+  - `Missing privilege separation directory: /run/sshd`
+- Created required runtime directory:
+  - `sudo mkdir -p /run/sshd`
+  - `sudo chmod 755 /run/sshd`
+- Verified config using:
+  - `sudo sshd -t`
+- Restarted and validated SSH recovery successfully
+
+### Logs & Debugging
+- Practiced:
+  - `grep -Ei`
+  - `journalctl -n`
+  - `tail`
+- Learned alias behavior:
+  - `alias grep='grep --color=auto'`
+- Understood pager navigation in `less`:
+  - `q`
+  - `g`
+  - `G`
+  - `/search`
+  - `n`
+
+### Disk Space Troubleshooting
+- Simulated low disk space using:
+  - `fallocate -l`
+- Verified usage using:
+  - `df -h`
+- Investigated large directories/files using:
+  - `du -sh /* | sort -hr`
+  - `find / -type f -size +500M`
+- Learned:
+  - `df` = filesystem overview
+  - `du` = directory/file usage
+- Understood recursive disk usage investigation workflow
+
+### Process & Job Control
+- Practiced:
+  - foreground/background jobs
+  - `Ctrl+C`
+  - `Ctrl+Z`
+  - `jobs`
+  - `bg`
+  - `fg`
+  - `kill`
+  - `pgrep`
+- Learned signals:
+  - `SIGINT`
+  - `SIGTERM`
+  - `SIGTSTP`
+
+### Package Management
+- Used:
+  - `apt show nginx`
+  - `apt list --installed`
+  - `dpkg -l`
+- Learned:
+  - package metadata
+  - dependencies
+  - repository sources
+  - installed vs available packages
+
+### Shell Scripting & Permissions
+- Created and executed shell scripts
+- Learned difference between:
+  - `./script.sh`
+  - `sh script.sh`
+- Understood execute permission behavior:
+  - execute bit required for direct execution
+  - read permission enough when interpreter reads file
+
+### Vim
+- Learned:
+  - `:w`
+  - `:q`
+  - `:wq`
+  - `:q!`
+  - `:wq!`
+- Understood `!` means force/override warnings
