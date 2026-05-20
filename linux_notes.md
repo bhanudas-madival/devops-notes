@@ -2039,3 +2039,123 @@ Issue
   - `:q!`
   - `:wq!`
 - Understood `!` means force/override warnings
+
+## Package Management & Recovery Notes
+
+### Package Search
+- `apt search nginx`
+  - searches repository metadata for matching package names/descriptions
+- `apt search ^nginx$`
+  - `^` = start
+  - `$` = end
+  - exact package match only
+
+### Verify Installed Packages
+- `dpkg -l`
+  - list package states
+- `ii`
+  - package installed + configured
+- `rc`
+  - package removed but config files remain
+
+### Package Information
+- `dpkg -s git`
+  - detailed package metadata
+- shows:
+  - version
+  - dependencies
+  - maintainer
+  - description
+  - install status
+
+### Dependencies
+- `apt depends nginx`
+  - inspect dependency tree
+- important fields:
+  - `Depends`
+  - `Breaks`
+  - `Replaces`
+
+### Package Lifecycle
+- `apt install`
+  - installs package + dependencies
+- `apt remove`
+  - removes binaries but may keep configs
+- `apt purge`
+  - removes binaries + configs
+- `apt autoremove`
+  - removes orphaned auto-installed dependencies
+
+### Package States Learned
+- `ii`
+  - installed/configured
+- `rc`
+  - removed/config files remain
+- no output from `dpkg -l`
+  - package fully purged
+
+### Update vs Upgrade
+- `apt update`
+  - refresh repository/package metadata only
+- `apt upgrade`
+  - actually upgrades installed packages
+- stale metadata can prevent latest upgrades
+
+### Package Recovery Commands
+- `apt install -f`
+  - fix broken dependency/package states
+- `dpkg --configure -a`
+  - configure unfinished/unconfigured packages
+
+### Package Manager Lock Troubleshooting
+- only one apt/dpkg process allowed at a time
+- lock issue debug:
+  - `ps aux | grep apt`
+- process states observed:
+  - `T`
+  - `T+`
+- graceful terminate:
+  - `kill PID`
+- force terminate:
+  - `kill -9 PID`
+
+### dpkg Useful Commands
+- `dpkg -L apache2`
+  - list files installed by package
+- `dpkg -S /usr/sbin/apache2`
+  - find package owning file
+
+### Important Linux File Locations
+- `/etc`
+  - configs
+- `/var/log`
+  - logs
+- `/usr/sbin`
+  - admin binaries
+- `/usr/lib/systemd/system`
+  - service files
+- `/var/www/html`
+  - web root
+
+### Service Integration
+- package installation can automatically:
+  - start services
+  - enable services
+  - install systemd unit files
+
+### Apache Package Split
+- `apache2`
+  - configs/service integration
+- `apache2-bin`
+  - binaries/modules
+- `apache2-data`
+  - static files/icons/errors
+- `apache2-utils`
+  - utility tools
+
+### Real Troubleshooting Mindset
+- inspect actual errors first
+- never delete dpkg lock files manually
+- identify locking process properly
+- verify package state after recovery
+- understand package lifecycle practically
