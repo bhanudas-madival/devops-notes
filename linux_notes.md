@@ -2159,3 +2159,96 @@ Issue
 - identify locking process properly
 - verify package state after recovery
 - understand package lifecycle practically
+
+
+## Linux Networking Basics
+
+### IP & Interfaces
+- `ip a`
+  - shows interfaces, IP addresses, interface state
+  - `lo` = loopback interface
+  - `ens5` = EC2 network interface
+
+- `ip -4 a`
+  - show IPv4 addresses only
+
+- `hostname -I`
+  - quickly display system IP addresses
+
+### Port & Service Inspection
+- `ss -tulnp`
+  - `-t` = TCP
+  - `-u` = UDP
+  - `-l` = listening sockets
+  - `-n` = numeric ports
+  - `-p` = process using port
+
+- `ss -tulnp | grep :80`
+  - filter specific listening port
+
+- `netstat -tulnp`
+  - legacy networking inspection tool
+  - `ss` is modern replacement
+
+### Connectivity Testing
+- `ping 8.8.8.8`
+  - tests network connectivity
+
+- `ping google.com`
+  - tests connectivity + DNS resolution
+
+- if IP ping works but domain ping fails:
+  - likely DNS issue
+
+### curl
+- `curl https://example.com`
+  - fetch webpage content
+
+- `curl -I https://example.com`
+  - fetch HTTP headers only
+
+- `curl -v https://example.com`
+  - verbose HTTP/TLS/debugging output
+
+- `curl localhost`
+  - test local service without browser
+
+### wget
+- `wget https://example.com`
+  - download file from URL
+
+### Service → Process → Port Flow
+- nginx service starts nginx process
+- nginx process listens on port 80
+- `ss -tulnp` verifies listening port
+- `curl localhost` verifies HTTP response
+
+### Package Management Understanding
+- `apt` = high-level package manager
+- `dpkg` = low-level package installer/backend
+
+- `history.log`
+  - high-level apt command history
+
+- `dpkg.log`
+  - detailed package state transitions
+
+### apt Concepts
+- manual package:
+  - protected from autoremove
+  - not necessarily manually installed by human
+
+- automatic package:
+  - dependency-installed package
+  - removable if no package depends on it
+
+### Version Inspection
+- `apt policy apache2`
+  - Installed = current installed version
+  - Candidate = version apt wants to install
+  - Version table = available repository versions
+
+- Ubuntu repositories:
+  - `resolute` = base release
+  - `resolute-updates` = bug fixes
+  - `resolute-security` = security patches
