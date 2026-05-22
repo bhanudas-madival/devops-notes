@@ -2252,3 +2252,185 @@ Issue
   - `resolute` = base release
   - `resolute-updates` = bug fixes
   - `resolute-security` = security patches
+
+## Linux Networking Basics Lab
+
+- inspected interfaces using:
+  ```bash
+  ip a
+  ip -4 a
+  hostname -I
+  ```
+
+- identified:
+  - `lo`
+    - localhost/loopback interface
+  - `ens5`
+    - EC2 primary network interface
+
+- learned:
+  - `UP`
+    - interface enabled
+  - `LOWER_UP`
+    - network link working
+  - `inet`
+    - IPv4 address
+  - `127.0.0.1`
+    - localhost/self communication
+  - EC2 internally uses private VPC IPs (`172.31.x.x`)
+
+- understood difference:
+  - `hostname -I`
+    - quick IP display
+  - `ip a`
+    - detailed interface/network inspection
+
+### Port & Service Inspection
+
+- used:
+  ```bash
+  ss -tulnp
+  sudo ss -tulnp
+  netstat -tulnp
+  sudo netstat -tulnp
+  ```
+
+- learned:
+  - `ss`
+    - modern socket inspection tool
+  - `netstat`
+    - older legacy networking tool
+
+- understood flags:
+  - `-t`
+    - TCP
+  - `-u`
+    - UDP
+  - `-l`
+    - listening sockets
+  - `-n`
+    - numeric output
+  - `-p`
+    - process info
+
+- observed:
+  - SSH listening on port `22`
+  - Apache listening on port `80`
+  - DNS resolver on port `53`
+  - DHCP client on port `68`
+
+- understood:
+  - `LISTEN`
+    - waiting for incoming connections
+  - `0.0.0.0:PORT`
+    - listening on all IPv4 interfaces
+  - `[::]:PORT`
+    - listening on all IPv6 interfaces
+  - `127.0.0.1:PORT`
+    - localhost-only access
+
+- understood relationship:
+  ```text
+  process → socket → protocol → port → client access
+  ```
+
+### Package Verification
+
+- verified package installation using:
+  ```bash
+  dpkg -l | grep net-tools
+  dpkg -s net-tools
+  ```
+
+- learned:
+  - `dpkg -l`
+    - list installed packages
+  - `dpkg -s`
+    - check package status/details
+
+### Networking Concepts
+
+- reviewed common ports:
+  - `22/tcp`
+    - SSH
+  - `80/tcp`
+    - HTTP
+  - `53`
+    - DNS
+  - `68/udp`
+    - DHCP client
+
+- reviewed:
+  - ICMP
+    - Internet Control Message Protocol
+
+### Ping & Connectivity Testing
+
+- practiced:
+  ```bash
+  ping google.com
+  ping 8.8.8.8
+  ```
+
+- learned:
+  - `ping IP`
+    - tests network connectivity only
+  - `ping domain`
+    - tests connectivity + DNS resolution
+
+- understood:
+  - `icmp_seq`
+    - packet sequence number
+  - `ttl`
+    - Time To Live
+  - `time=ms`
+    - latency/round-trip time
+
+- practiced process control:
+  - `Ctrl + C`
+    - terminate process (`SIGINT`)
+  - `Ctrl + Z`
+    - suspend process (`SIGTSTP`)
+
+### curl & HTTP Debugging
+
+- practiced:
+  ```bash
+  curl https://google.com
+  curl -I https://google.com
+  curl -v https://google.com
+  curl -I localhost
+  ```
+
+- learned:
+  - `curl`
+    - sends HTTP/HTTPS requests from terminal
+  - `-I`
+    - fetch headers only
+  - `-v`
+    - verbose/debug mode
+  - `-o`
+    - save output to file
+
+- understood verbose stages:
+  ```text
+  DNS resolution
+  → TCP connection
+  → TLS handshake
+  → certificate validation
+  → HTTP request
+  → HTTP response
+  ```
+
+- observed:
+  - HTTP `200 OK`
+  - HTTP `301 Moved`
+  - HTTP/2 negotiation
+  - TLSv1.3 connection
+  - SSL certificate verification
+
+- verified:
+  - working DNS
+  - outbound internet connectivity
+  - HTTPS functionality
+  - Apache responding locally on `localhost`
