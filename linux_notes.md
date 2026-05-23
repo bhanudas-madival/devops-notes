@@ -2434,3 +2434,96 @@ Issue
   - outbound internet connectivity
   - HTTPS functionality
   - Apache responding locally on `localhost`
+
+## Linux Networking & Web Server Practical
+
+### wget vs curl
+- `wget URL`
+  - downloads file locally
+  - saves automatically
+- `curl URL`
+  - prints response directly to terminal
+- `curl -I`
+  - fetch headers only
+- `curl -X METHOD URL`
+  - specify HTTP request method manually
+
+### HTTP Testing
+- `curl localhost`
+- `curl 127.0.0.1`
+- localhost resolves to `127.0.0.1`
+- curl acts like lightweight browser for testing HTTP/services
+
+### Networking Concepts
+- Public IP vs Private IP vs localhost
+- `127.0.0.1`
+  - loopback/local machine only
+- `172.x.x.x`
+  - private/internal network IP
+- Public IP used for internet access
+
+### Ports & Sockets
+- socket = communication endpoint created by process
+- port = numeric identifier for service communication
+- process creates socket and binds to port
+
+### ss Command
+- `ss -tulnp`
+  - `-t` TCP sockets
+  - `-u` UDP sockets
+  - `-l` listening sockets only
+  - `-n` numeric IPs/ports
+  - `-p` process using socket
+
+### nginx Practical
+- installed nginx using apt
+- verified service with:
+  - `systemctl status nginx`
+- verified listener:
+  - `ss -tulnp | grep :80`
+- nginx listening on port 80
+
+### Real Troubleshooting
+- nginx failed due to:
+  - `bind() to 0.0.0.0:80 failed`
+- identified Apache using port 80
+- checked process using port:
+  - `ss -tulnp | grep :80`
+  - `lsof -i :80`
+- stopped apache2
+- restarted nginx successfully
+
+### Parent/Worker Process Understanding
+- master/root process starts first
+- worker processes run under `www-data`
+- checked with:
+  - `ps -o pid,ppid,user,cmd -C apache2`
+
+### AWS External Access
+- identified public IP from AWS console
+- configured security group inbound HTTP rule
+- allowed TCP port 80
+- tested external browser access successfully
+
+### Service Failure Debugging
+- stopped nginx intentionally
+- verified:
+  - inactive service
+  - no listener on port 80
+  - curl connection failure
+- restarted nginx and restored HTTP access
+
+### Important Troubleshooting Chain
+service
+↓
+process
+↓
+socket
+↓
+port
+↓
+network access
+↓
+client request
+↓
+response/debugging
