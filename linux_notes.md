@@ -2527,3 +2527,132 @@ network access
 client request
 ↓
 response/debugging
+
+## Linux Networking & Troubleshooting Labs
+
+### Networking Basics
+
+- Practiced checking IP addresses and network interfaces using:
+  - `ip a`
+- Practiced checking listening ports using:
+  - `ss -tulnp`
+- Learned practical port verification and service inspection
+- Practiced connectivity testing using:
+  - `ping`
+  - `curl`
+  - `wget`
+- Tested local HTTP access using:
+  - `curl localhost`
+  - `curl 127.0.0.1`
+- Practiced verifying services through:
+  - service status
+  - listening ports
+  - local connectivity testing
+
+### High CPU Troubleshooting
+
+- Simulated CPU load using:
+  - `yes > /dev/null`
+- Monitored CPU usage using:
+  - `top`
+  - `ps aux --sort=-%cpu | head`
+- Identified high CPU process using PID
+- Learned process states:
+  - `R` → running
+  - `T` → stopped/suspended
+- Practiced stopping runaway processes using:
+  - `kill`
+  - `pkill`
+- Learned operational troubleshooting workflow for CPU issues
+
+### Disk & Filesystem Troubleshooting
+
+- Practiced disk usage inspection using:
+  - `df -h`
+- Practiced inode inspection using:
+  - `df -i`
+- Learned difference between:
+  - disk space exhaustion
+  - inode exhaustion
+- Created large files for disk usage testing
+- Practiced identifying large disk usage locations
+
+### Service Troubleshooting
+
+- Practiced service management using:
+  - `systemctl status`
+  - `systemctl start`
+  - `systemctl stop`
+- Verified listening ports after service changes
+- Learned service → process → port troubleshooting flow
+- Practiced checking logs using:
+  - `journalctl -xe`
+  - `journalctl -u nginx`
+
+### Linux Permissions Troubleshooting
+
+- Practiced executable permission debugging using:
+  - `chmod 644`
+  - `chmod +x`
+- Learned why scripts fail with:
+  - `Permission denied`
+- Practiced verifying permissions using:
+  - `ls -l`
+- Learned executable bit importance in script execution
+
+### Shell & Execution Understanding
+
+- Learned difference between:
+  - `sh script.sh`
+  - `bash script.sh`
+  - `./script.sh`
+- Understood interpreter execution vs executable permission execution
+- Practiced Linux command execution behavior and troubleshooting
+
+### Linux File Operations
+
+- Practiced:
+  - `ls -lt`
+  - `ls -ltr`
+- Learned file sorting by modification time
+- Practiced file inspection using:
+  - `cat`
+  - `vim`
+
+### Linux Troubleshooting Mindset
+
+- Practiced real troubleshooting workflow:
+  - read actual error
+  - verify service status
+  - verify process
+  - verify listening port
+  - test locally
+  - test externally
+  - inspect logs
+  - retest after fix
+
+## Commands Practiced
+
+```bash
+ip a
+ss -tulnp
+ping
+curl
+wget
+top
+ps aux --sort=-%cpu | head
+kill
+pkill
+df -h
+df -i
+systemctl status
+systemctl start
+systemctl stop
+journalctl -xe
+journalctl -u nginx
+chmod 644
+chmod +x
+ls -lt
+ls -ltr
+cat
+vim
