@@ -2656,3 +2656,35 @@ ls -lt
 ls -ltr
 cat
 vim
+
+# Tmux + Shell Environment Notes
+
+## Tmux Colors / Prompt
+- Customized Bash prompt using `PS1`
+- Used ANSI escape color codes inside `.bashrc`
+- Green username/hostname prompt example:
+  export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+## Bash Startup Files
+- `.bashrc` loads for interactive shells
+- `.profile` may not exist on some minimal/cloud Ubuntu images
+- Added Bash config manually to ensure prompt loads automatically after login
+
+## EC2 / Ubuntu Notes
+- Verified shell customization on EC2 instance
+- Learned why changes may not apply until:
+  - new shell session
+  - `source ~/.bashrc`
+  - proper startup file exists
+
+## Git / Project Notes
+- Moving local folders changes Git tracking path locally
+- GitHub repository structure changes only after commit + push
+- Missing one daily commit is normal — continue consistency next day
+
+## Windows Notes
+- Direct shutdown is generally safe on Windows 11
+- Unsaved work or running updates can still cause issues
+
+
+
