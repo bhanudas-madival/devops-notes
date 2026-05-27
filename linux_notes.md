@@ -2686,5 +2686,68 @@ vim
 - Direct shutdown is generally safe on Windows 11
 - Unsaved work or running updates can still cause issues
 
+## Linux Notes
 
+### WSL Workflow
+- Moved development workflow from Windows path to native WSL projects directory
+- Cloned GitHub repositories directly inside WSL
+- Learned Windows path to WSL path conversion:
+  - `D:\path` → `/mnt/d/path`
 
+### Aliases
+- Created custom aliases:
+  - `projects='cd ~/projects'`
+- Viewed aliases using:
+  - `alias`
+- Learned aliases should be stored in:
+  - `~/.bash_aliases`
+  - loaded from `~/.bashrc`
+
+### tmux
+- Learned tmux keeps persistent shell sessions
+- Reloaded aliases using:
+  - `source ~/.bashrc`
+- Learned tmux sessions preserve old shell environment
+
+### Permissions
+- Practiced file permissions using:
+  - `chmod +x`
+  - `chmod u-r`
+- Learned difference between:
+  - read permission
+  - execute permission
+
+### Bash Conditions
+- `-r` → checks file readability
+- `-z` → checks if string is empty
+
+### Disk Usage Commands
+- `df -h /`
+  - shows filesystem disk usage
+- `du -sh /`
+  - shows directory/file usage recursively
+
+### Important Difference
+- `df` checks filesystem usage
+- `du` checks actual file/directory sizes
+
+### sort Flags
+- `sort -rh`
+  - `-r` → reverse sort
+  - `-h` → human-readable numeric sorting
+
+### Process & Signals
+- `kill -9`
+  - sends SIGKILL signal
+- Learned difference between:
+  - SIGTERM
+  - SIGKILL
+
+### nice / renice
+- Practiced process priority concepts
+- Learned:
+  - `nice -n`
+  - `renice`
+- Understood nice value ranges:
+  - `-20` high priority
+  - `19` low priority
