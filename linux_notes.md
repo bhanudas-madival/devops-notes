@@ -2751,3 +2751,133 @@ vim
 - Understood nice value ranges:
   - `-20` high priority
   - `19` low priority
+
+````markdown id="vx4yp9"
+## GRUB Basics
+- GRUB = GRand Unified Bootloader
+- Boot flow:
+  BIOS/UEFI → GRUB → Linux Kernel → systemd
+- GRUB loads Linux kernel and provides boot menu
+
+### Important GRUB Files
+
+```bash
+/boot/grub/grub.cfg
+/etc/default/grub
+/etc/grub.d/
+````
+
+### Useful Commands
+
+```bash id="n7xlwb"
+sudo update-grub
+sudo grub-install /dev/sda
+```
+
+### Check Boot Mode
+
+```bash id="tqapzb"
+[ -d /sys/firmware/efi ] && echo UEFI || echo BIOS
+```
+
+---
+
+## du Command
+
+* `du` shows disk usage
+* `du -h`:
+
+  * recursive directory sizes
+  * human readable output
+* `du -ah`:
+
+  * directories + individual files
+
+### Find Large Files
+
+```bash id="u7p5ma"
+du -ah | sort -h | tail
+```
+
+---
+
+## Disk Usage Monitoring
+
+### df Command
+
+```bash id="tpv6oz"
+df -h
+```
+
+* `df` → disk filesystem usage
+* `-h` → human readable sizes
+
+### Check Specific Filesystem
+
+```bash id="f9twq4"
+df -h /
+df -h /mnt/d
+```
+
+### Disk Alert Logic
+
+```bash id="vjlwm0"
+usage=$(df /mnt/d | awk 'NR==2 {print $5}' | tr -d '%')
+```
+
+### awk Usage
+
+```bash id="l64vdw"
+awk 'NR==2 {print $5}'
+```
+
+* `NR==2` → second line
+* `$5` → fifth column
+
+### tr Usage
+
+```bash id="mdw6f2"
+tr -d '%'
+```
+
+* `-d` → delete characters
+* removes `%` symbol
+
+---
+
+## WSL Notes
+
+* `/` = Linux root filesystem
+* `/mnt/c` = Windows C drive
+* `/mnt/d` = Windows D drive
+
+### Restart WSL
+
+```powershell id="h65kn7"
+wsl --shutdown
+```
+
+### Check WSL Status
+
+```powershell id="4zxg7u"
+wsl --status
+```
+
+---
+
+## tmux Mouse Support
+
+### Enable Mouse
+
+```bash id="78cbmz"
+echo "set -g mouse on" >> ~/.tmux.conf
+```
+
+### Reload tmux Config
+
+```bash id="jbv1o5"
+tmux source-file ~/.tmux.conf
+```
+
+```id="ubk88r"
+
