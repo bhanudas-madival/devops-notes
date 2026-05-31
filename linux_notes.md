@@ -2881,3 +2881,68 @@ tmux source-file ~/.tmux.conf
 
 ```id="ubk88r"
 
+# Bash/Linux Concepts Learned
+
+## uniq
+
+```bash
+sort file | uniq
+sort file | uniq -c
+```
+
+* `uniq` only removes adjacent duplicates.
+* Common pattern: `sort | uniq`.
+
+## Shell Globbing
+
+```bash
+./calc.sh 5 * 5
+```
+
+* `*` expands to matching filenames before reaching the script.
+
+Use:
+
+```bash
+./calc.sh 5 "*" 5
+```
+
+or
+
+```bash
+./calc.sh 5 \* 5
+```
+
+## Bash Debugging
+
+```bash
+bash -x script.sh
+```
+
+* Shows commands as they execute.
+* Useful for debugging variables and logic.
+
+## Exit Codes
+
+```bash
+echo $?
+```
+
+* `0` = success
+* Non-zero = failure
+
+## stdout and stderr
+
+Suppress output:
+
+```bash
+> /dev/null
+```
+
+Suppress stdout and stderr:
+
+```bash
+> /dev/null 2>&1
+```
+
+* Common in monitoring and automation scripts.
