@@ -2946,3 +2946,91 @@ Suppress stdout and stderr:
 ```
 
 * Common in monitoring and automation scripts.
+
+12 June 2026 (Fri) Linux Storage & LVM
+
+### SCP
+- Uploaded file to EC2:
+  scp -i key.pem file.txt ubuntu@server:/path
+
+- Downloaded file from EC2:
+  scp -i key.pem ubuntu@server:/path/file.txt .
+
+### rsync
+- Synced files using SSH key:
+  rsync -avz -e "ssh -i key.pem" source destination
+
+- Trailing slash behavior:
+  rsync source/ dest   # copy contents
+  rsync source dest   # copy directory itself
+
+### Storage Commands
+- free -h -> RAM and swap usage
+- df -h -> Filesystem/disk usage
+- lsblk -> Block devices and mount points
+- blkid -> Filesystem UUID information
+
+### LVM
+- Checked Physical Volumes:
+  pvs
+
+- Checked Volume Groups:
+  vgs
+
+- Checked Logical Volumes:
+  lvs
+
+- Removed LVM components:
+  lvremove
+  vgremove
+  pvremove
+
+- LVM hierarchy:
+  Disk -> PV -> VG -> LV -> Filesystem -> Mount
+
+### Partition Management
+- Created partitions using fdisk
+- Deleted partitions using fdisk
+- Verified partitions with:
+  lsblk
+  fdisk -l
+
+- fdisk commands:
+  n -> new partition
+  d -> delete partition
+  p -> print partition table
+  w -> write changes
+  q -> quit without saving
+
+### Filesystem & Mounting
+- Created ext4 filesystem:
+  mkfs.ext4 /dev/device
+
+- Mounted filesystem:
+  mount /dev/device /mountpoint
+
+- Created mount points:
+  mkdir /data
+  mkdir /backup
+
+### Persistent Mounts
+- Obtained UUID:
+  blkid
+
+- Added entries to:
+  /etc/fstab
+
+- Validated fstab safely:
+  mount -a
+
+### Key Learning
+- Direct filesystem:
+  Disk -> Filesystem -> Mount
+
+- Traditional partitioning:
+  Disk -> Partition -> Filesystem -> Mount
+
+- LVM:
+  Disk -> PV -> VG -> LV -> Filesystem -> Mount
+
+- Production systems commonly use partitions or LVM instead of formatting an entire disk directly.
