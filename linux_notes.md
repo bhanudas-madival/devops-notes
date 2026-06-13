@@ -3034,3 +3034,185 @@ Suppress stdout and stderr:
   Disk -> PV -> VG -> LV -> Filesystem -> Mount
 
 - Production systems commonly use partitions or LVM instead of formatting an entire disk directly.
+
+# LVM Snapshots
+
+## Snapshot Creation
+
+Create snapshot:
+
+sudo lvcreate -L 2G -s -n snap-data /dev/data-vg/data-lv
+
+Flags:
+- -L : snapshot size
+- -s : create snapshot
+- -n : snapshot name
+
+## Snapshot Activation
+
+Check LV state:
+
+sudo lvscan
+
+Activate LV:
+
+sudo lvchange -ay /dev/data-vg/data-lv
+
+Deactivate LV:
+
+sudo lvchange -an /dev/data-vg/data-lv
+
+Observation:
+- Activating a snapshot also activates its origin LV.
+- Deactivating the origin LV deactivates dependent snapshots.
+
+## Snapshot Merge (Rollback)
+
+Merge snapshot:
+
+sudo lvconvert --merge /dev/data-vg/snap-data
+
+Output:
+
+Merging of snapshot ... will occur on next activation
+
+Trigger merge without reboot:
+
+sudo lvchange -an /dev/data-vg/data-lv
+sudo lvchange -ay /dev/data-vg/data-lv
+
+Result:
+- Snapshot merged into origin LV.
+- Snapshot removed automatically.
+- Original data restored to snapshot state.
+
+## Loop Device LVM Lab
+
+Create sparse disk:
+
+truncate -s 1G disk1.img
+
+Create real allocated disk:
+
+dd if=/dev/zero of=disk2.img bs=1M count=1024
+
+Difference:
+- truncate -> sparse file, no blocks allocated initially
+- dd -> writes actual blocks immediately
+
+Attach loop device:
+
+sudo losetup -fP disk2.img
+
+Show loop devices:
+
+sudo losetup -a
+
+## Build LVM on Loop Device
+
+Create PV:
+
+sudo pvcreate /dev/loop4
+
+Create VG:
+
+sudo vgcreate loop-vg /dev/loop4
+
+Create LV:
+
+sudo lvcreate -l 100%FREE -n loop-lv loop-vg
+
+Create filesystem:
+
+sudo mkfs.ext4 /dev/loop-vg/loop-lv
+
+Mount:
+
+sudo mkdir -p /loop_data
+sudo mount /dev/loop-vg/loop-lv /loop_data
+
+Storage hierarchy:
+
+disk2.img
+ -> /dev/loop4
+ -> PV
+ -> VG
+ -> LV
+ -> ext4
+ -> /loop_data
+
+## Linux Users and Groups
+
+Create user with home directory:
+
+sudo useradd -m ramji
+
+Create group:
+
+sudo groupadd devteam
+
+Add supplementary groups:
+
+sudo usermod -aG devteam,root ramji
+
+Verify:
+
+id ramji
+
+Important:
+- -aG appends groups
+- -G alone replaces supplementary groups
+
+User Private Group (UPG):
+- useradd creates user and matching primary group
+
+UID guideline:
+- UID >= 1000 -> normal users
+- UID < 1000 -> system/service accounts
+
+## Special Permissions
+
+SetUID:
+
+chmod 4775 file
+
+Meaning:
+- Process runs with file owner's UID
+
+SetGID:
+
+chmod 2775 directory
+
+Meaning:
+- New files inherit directory group
+
+Sticky Bit:
+
+chmod 1775 directory
+
+Meaning:
+- Users cannot delete other users' files in shared directories
+
+Examples:
+-rwsr-xr-x  -> SetUID
+drwxrwsr-x  -> SetGID
+drwxrwxrwt  -> Sticky Bit
+
+## chmod Symbolic Modes
+
+Add permission:
+
+chmod g+w file
+
+Remove permission:
+
+chmod o-rwx file
+
+Set exact permissions:
+
+chmod u=rwx file
+
+Operators:
++ add
+- remove
+= set exactly
