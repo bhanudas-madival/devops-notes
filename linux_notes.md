@@ -3216,3 +3216,56 @@ Operators:
 + add
 - remove
 = set exactly
+
+## Linux Command Practice
+
+- Created directory structures using:
+  - `mkdir -p`
+  - brace expansion `{}`
+
+- Explored file listing and disk usage commands:
+  - `ls -lhS`
+  - `du -sh`
+
+- Practiced working with compressed files:
+  - `gzip`
+  - `gzip -c`
+  - `gunzip`
+  - `zcat`
+  - `zgrep`
+
+- Practiced text processing:
+  - `cut -d`
+  - `cut -f`
+  - `tee`
+
+- Practiced sorting and data analysis:
+  - `sort`
+  - `sort -r`
+  - `sort -n`
+  - `sort -k`
+  - `uniq`
+  - `uniq -c`
+
+- Reinforced command usage:
+  - `cut -f` for field extraction
+  - `sort -k` for column/key-based sorting
+
+- Practiced log analysis using:
+  - `grep -i`
+  - `grep -v`
+  - `grep -n`
+  - `grep -c`
+  - `grep -E`
+
+- Learned common log-search patterns:
+  - Case-insensitive matching
+  - Inverted matching
+  - Line-number display
+  - Match counting
+  - Multiple pattern matching
+
+- Reinforced remote administration concepts:
+  - `ssh` for remote login
+  - `scp` for secure file transfer
+  - SSH protocol and Port 22
