@@ -3269,3 +3269,30 @@ Operators:
   - `ssh` for remote login
   - `scp` for secure file transfer
   - SSH protocol and Port 22
+Linux Review & Practical Practice
+
+- Reviewed `ls` command usage:
+  - `ls`
+  - `ls -l`
+  - `ls -ld`
+  - `ls -lh`
+  - `ls -lhs`
+  - `ls -lS`
+- Practiced creating directory structures with `mkdir -p` and Bash brace expansion:
+  - `mkdir -p project/{logs,scripts,backups}`
+- Practiced file and directory deletion:
+  - `rm`
+  - `rm -d`
+  - `rm -r`
+  - `rm -rf`
+- Practiced `cat`:
+  - Creating files
+  - Viewing files
+  - Combining multiple files using output redirection
+- Practiced gzip compression:
+  - `gzip`
+  - `gunzip`
+  - `zcat`
+  - `gzip -c`
+- Verified compressed-file extraction and preservation of the original file.
+- Started practical review of `touch` and timestamp behavior.
