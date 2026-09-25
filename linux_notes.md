@@ -3296,3 +3296,63 @@ Linux Review & Practical Practice
   - `gzip -c`
 - Verified compressed-file extraction and preservation of the original file.
 - Started practical review of `touch` and timestamp behavior.
+## 25 September 2026
+
+### Linux File Operations, Links, Logs & Text Processing
+
+#### Completed Topics
+
+- **`touch`**
+  - Create empty files
+  - Update file timestamps
+  - Understand access (atime), modification (mtime), and change (ctime) timestamps
+
+- **Log Monitoring**
+  - `head` — inspect the beginning of a log
+  - `tail` — inspect the end of a log
+  - `tail -f` — monitor live log updates
+
+- **Large File Investigation**
+  - Why `cat` is unsuitable for very large files
+  - `less` vs `more`
+  - Search inside `less` using `/ERROR`
+  - `n` — next search result
+  - `N` — previous search result
+
+- **Copy, Rename & Move Files**
+  - `cp` — copy files
+  - `mv` — rename and move files
+  - `mv -i` — prompt before overwriting
+  - Understand destination overwrite behavior
+  - Understand why `mv` handles both rename and move
+
+- **Hard Links & Symbolic Links**
+  - `ln` — create hard links
+  - `ln -s` — create symbolic links
+  - Hard links share the same inode
+  - Symbolic links have their own inode and point to a pathname
+  - Hard links can survive deletion of the original filename
+  - Symbolic links become dangling when their target is deleted
+  - Hard links cannot normally cross filesystem boundaries
+  - Symbolic links can point across filesystems
+
+- **Text Processing & Sorting**
+  - `awk` — extract fields
+  - `cut` — extract fields
+  - `tee` — display and save command output
+  - `sort -k2` — sort by second field
+  - `sort -k2n` — numeric sort by second field
+  - `sort -k2nr` — reverse numeric sort by second field
+
+### Practical Review
+
+Completed hands-on Linux labs:
+
+- L6 — `touch`
+- L7 — Log Monitoring
+- L8 — Large File Investigation
+- L9 — Copy, Rename and Move Files
+- L10 — Hard Links vs Symbolic Links
+- L11 — `cut`, `awk`, `tee` and `sort`
+
+All completed practical questions were demonstrated successfully.
