@@ -3356,3 +3356,37 @@ Completed hands-on Linux labs:
 - L11 — `cut`, `awk`, `tee` and `sort`
 
 All completed practical questions were demonstrated successfully.
+## 26 September 2026
+
+### Linux Review
+
+#### L12 — Sorting Data
+
+- Alphabetical sorting using `sort`
+- Numerical sorting using `sort -n`
+- Sorting by a specific column using `sort -k`
+- Numeric sorting by column using `sort -k2n`
+- Extracting a column using `cut`
+
+#### L13 — Compare Configuration Files
+
+- Compare configuration files using `diff`
+- Use `diff -u` for unified, easier-to-read differences
+- Identify changed configuration values
+
+#### L14 — Log Analysis with `grep`
+
+- Find `INFO` entries using `grep`
+- Case-insensitive search using `grep -i`
+- Search multiple patterns using `grep -e`
+- Revision of:
+  - `grep -n`
+  - `grep -c`
+  - `grep -v`
+- Combining `grep` with `cut`
+
+### Practical Labs Completed
+
+- L12 — Sorting Data
+- L13 — Compare Configuration Files
+- L14 — Log Analysis with `grep`
