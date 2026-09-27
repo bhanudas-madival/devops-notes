@@ -3390,3 +3390,21 @@ All completed practical questions were demonstrated successfully.
 - L12 — Sorting Data
 - L13 — Compare Configuration Files
 - L14 — Log Analysis with `grep`
+## 27 September 2026
+
+### Linux Review
+
+#### L15 — Remote Administration Workflow
+- Connected to a remote EC2 Linux server using SSH
+- Used an SSH private key (`.pem`) for authentication
+- Located the SSH key from the Windows Downloads directory through WSL
+- Copied the key to `~/.ssh`
+- Secured the private key using `chmod 400`
+- Understood `scp` for secure file copying
+- Understood `rsync` for efficient file/directory synchronization
+- Difference between `scp` (copy) and `rsync` (synchronize)
+
+### Practical Lab
+- L15 — SSH remote administration: Completed
+- SCP upload/download: Not completed
+- rsync synchronization: Not completed
