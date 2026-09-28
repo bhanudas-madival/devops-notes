@@ -3408,3 +3408,50 @@ All completed practical questions were demonstrated successfully.
 - L15 — SSH remote administration: Completed
 - SCP upload/download: Not completed
 - rsync synchronization: Not completed
+28 September 2026
+Linux Review & Practical Labs
+L12 — Sorting Data
+Alphabetical sorting using sort
+Numerical sorting using sort -n
+Sorting by a specific column using sort -k
+Extracting a column using cut
+L13 — Compare Configuration Files
+Compare configuration files using diff
+Use diff -u for unified, readable differences
+Identify configuration differences between environments
+L14 — Log Analysis with grep
+Find INFO entries using grep
+Case-insensitive searching using grep -i
+Search multiple patterns using grep -E and grep -e
+L15 — Remote Administration Workflow
+Connect to an EC2 Linux instance using SSH
+Use an SSH private key with ssh -i
+Secure private-key permissions using chmod 400
+Upload files from local machine to EC2 using scp
+Download files from EC2 to local machine using scp
+Synchronize directories using rsync
+Use rsync -avn for a dry run
+Use SSH keys with rsync28 September 2026
+Linux Review & Practical Labs
+L12 — Sorting Data
+Alphabetical sorting using sort
+Numerical sorting using sort -n
+Sorting by a specific column using sort -k
+Extracting a column using cut
+L13 — Compare Configuration Files
+Compare configuration files using diff
+Use diff -u for unified, readable differences
+Identify configuration differences between environments
+L14 — Log Analysis with grep
+Find INFO entries using grep
+Case-insensitive searching using grep -i
+Search multiple patterns using grep -E and grep -e
+L15 — Remote Administration Workflow
+Connect to an EC2 Linux instance using SSH
+Use an SSH private key with ssh -i
+Secure private-key permissions using chmod 400
+Upload files from local machine to EC2 using scp
+Download files from EC2 to local machine using scp
+Synchronize directories using rsync
+Use rsync -avn for a dry run
+Use SSH keys with rsync
