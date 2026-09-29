@@ -3455,3 +3455,44 @@ Download files from EC2 to local machine using scp
 Synchronize directories using rsync
 Use rsync -avn for a dry run
 Use SSH keys with rsync
+## 29 September 2026
+
+### Linux Review
+
+#### L16 — Server Discovery
+- Identify the hostname using `hostname`
+- Identify IP addresses using `hostname -I` / `ip addr`
+- Identify listening TCP and UDP ports using `ss -lntup`
+
+#### L17 — Downloading and API Testing
+- Understand basic REST API communication
+- Use `curl` to make HTTP requests
+- Understand HTTP `GET` and `POST`
+- Understand sending JSON data with `curl`
+- Use `curl -i` to inspect HTTP response headers
+- Understand `curl -O` and `curl -o` for downloading files
+- Reviewed the difference between `curl` and `wget`
+
+#### L18 — Continuous Monitoring
+- Monitor filesystem disk usage using `df -h`
+- Continuously refresh commands using `watch`
+- Monitor running processes using `ps aux`
+- Understand `ps` options `a`, `u`, and `x`
+
+#### L19 — Basic `awk` Operations
+- Print an entire file using `awk`
+- Print a specific line using `NR`
+- Print specific fields using `$1`, `$2`, etc.
+- Understand the difference between records and fields in `awk`
+
+#### L20 — Log Processing with `awk`
+- Filter log entries using an `awk` condition
+- Count matching entries using a counter and `END`
+- Save filtered output using `tee`
+- Combine `awk` filtering with `tee` to display and save results
+
+### Practical Labs Completed
+- L18 — Continuous Monitoring
+- L19 — Basic `awk` Operations
+- L20 — Log Processing with `awk`
+
