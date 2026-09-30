@@ -3496,3 +3496,21 @@ Use SSH keys with rsync
 - L19 — Basic `awk` Operations
 - L20 — Log Processing with `awk`
 
+## 30 September 2026
+
+### Linux Review
+
+#### L15 — Remote Administration Workflow
+- Connected to an EC2 Linux instance using SSH
+- Secured the SSH private key using `chmod 400`
+- Uploaded files from local WSL to EC2 using `scp`
+- Uploaded directories using `scp -r`
+- Downloaded files from EC2 to local WSL using `scp`
+- Downloaded directories using `scp -r`
+- Synchronized directories between local WSL and EC2 using `rsync`
+- Used `rsync` over SSH with an EC2 private key
+- Reviewed the difference between `rsync -a` and `rsync -r`
+- Practiced verifying synchronization results on both local and remote systems
+
+### Practical Labs Completed
+- L15 — Remote Administration Workflow
