@@ -3514,3 +3514,10 @@ Use SSH keys with rsync
 
 ### Practical Labs Completed
 - L15 — Remote Administration Workflow
+## 1 October 2026
+
+### Linux
+- Practiced `wget`, `curl`, `watch`, `awk`, and `sed` for file, API, monitoring, and log processing tasks.
+- Practiced Linux user/group management, permissions, SGID, and `umask`.
+- Strengthened understanding of collaborative access and file permission management.
+- Started ACL practice.
