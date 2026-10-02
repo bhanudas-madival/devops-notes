@@ -3521,3 +3521,10 @@ Use SSH keys with rsync
 - Practiced Linux user/group management, permissions, SGID, and `umask`.
 - Strengthened understanding of collaborative access and file permission management.
 - Started ACL practice.
+
+## 2 October 2026
+
+- Practiced ACLs, Sticky Bit, SUID, and Linux permission troubleshooting.
+- Strengthened understanding of file vs directory permissions and permission evaluation.
+- Started process investigation using `ps` and PID concepts.
+- Reviewed practical Linux access-control and permission scenarios.
