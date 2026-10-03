@@ -3528,3 +3528,11 @@ Use SSH keys with rsync
 - Strengthened understanding of file vs directory permissions and permission evaluation.
 - Started process investigation using `ps` and PID concepts.
 - Reviewed practical Linux access-control and permission scenarios.
+
+## 3 October 2026
+
+- Practiced SGID on shared team directories.
+- Configured a shared directory with group ownership and restricted access using 770.
+- Verified SGID causes newly created files to inherit the directory's group ownership.
+- Verified team collaboration using bhanu and ram.
+- Reviewed the difference between SGID group inheritance and umask file permissions.
