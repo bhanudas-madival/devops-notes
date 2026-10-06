@@ -3536,3 +3536,11 @@ Use SSH keys with rsync
 - Verified SGID causes newly created files to inherit the directory's group ownership.
 - Verified team collaboration using bhanu and ram.
 - Reviewed the difference between SGID group inheritance and umask file permissions.
+## 6 October 2026
+
+- Reviewed practical uses of `cat`: creating, viewing, and combining files.
+- Practiced reading and extracting gzip-compressed logs using `zcat`, `gunzip`, and `gzip`.
+- Reviewed complete Linux permission troubleshooting using ownership, groups, permissions, and ACLs.
+- Strengthened understanding of Linux permission-class evaluation and identified permission-denied root causes.
+- Reviewed SUID using `/usr/bin/passwd` and understood how SUID enables privileged operations without giving users direct access to `/etc/shadow`.
+
