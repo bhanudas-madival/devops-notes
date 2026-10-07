@@ -3544,3 +3544,10 @@ Use SSH keys with rsync
 - Strengthened understanding of Linux permission-class evaluation and identified permission-denied root causes.
 - Reviewed SUID using `/usr/bin/passwd` and understood how SUID enables privileged operations without giving users direct access to `/etc/shadow`.
 
+## 7 October 2026
+
+- Practiced log monitoring using `head`, `tail`, and `tail -f`.
+- Practiced copying, renaming, and moving files using `cp` and `mv`, including `mv -i` for overwrite confirmation.
+- Practiced creating project directory structures using `mkdir -p` and brace expansion.
+- Verified directory structures with `tree` and practiced sorting directory contents by size with `ls -lS`.
+
