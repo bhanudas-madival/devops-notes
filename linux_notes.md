@@ -3551,3 +3551,8 @@ Use SSH keys with rsync
 - Practiced creating project directory structures using `mkdir -p` and brace expansion.
 - Verified directory structures with `tree` and practiced sorting directory contents by size with `ls -lS`.
 
+## 8 October 2026
+
+- Practiced practical uses of `touch` for creating files and updating timestamps.
+- Used `stat` to inspect atime, mtime, ctime, and birth time.
+- Verified how timestamps change when `touch` is used on an existing file.
