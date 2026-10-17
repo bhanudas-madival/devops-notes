@@ -3556,3 +3556,19 @@ Use SSH keys with rsync
 - Practiced practical uses of `touch` for creating files and updating timestamps.
 - Used `stat` to inspect atime, mtime, ctime, and birth time.
 - Verified how timestamps change when `touch` is used on an existing file.
+
+## 2026-10-17 — Linux Revision and Practical Labs
+
+- **Directory management:** Created project directory structures and verified them using `ls`; practised sorting by size with `ls -lS`.
+- **File deletion:** Practised `rm`, `rmdir`, `rm -r`, and `rm -rf`.
+- **File operations:** Used `cat` to create, view, and combine files; practised copying, renaming, and moving files with `cp` and `mv`, including `mv -i`.
+- **Compressed logs:** Practised `zcat`, `gzip`, `gunzip`, and `gzip -c`; reviewed extraction behavior and preserving original files.
+- **Timestamps:** Used `touch` to create files and update timestamps; verified atime, mtime, ctime, and birth time using `stat`.
+- **Log monitoring:** Practised `head`, `tail`, and `tail -f` to inspect and monitor logs.
+- **Large-file investigation:** Reviewed `cat` versus `less` and `more`, searching with `/ERROR`, and navigating search results with `n` and `N`.
+- **Hard and symbolic links:** Created both link types, compared inodes, and tested behavior after deleting the original filename.
+- **Text processing:** Practised `awk`, `cut`, and `tee` to extract columns, save output, and display it simultaneously.
+- **Sorting:** Practised `sort`, `sort -k`, `sort -n`, and `sort -r` for alphabetical, column-based, and numeric sorting.
+- **Configuration troubleshooting:** Compared configuration files using `diff`.
+- **Log analysis:** Used `grep`, `grep -i`, `grep -E`, and `grep -n` to search patterns and display matching line numbers.
+- **Remote administration:** Reviewed EC2 connection and file-transfer workflows. 
