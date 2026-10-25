@@ -3572,3 +3572,14 @@ Use SSH keys with rsync
 - **Configuration troubleshooting:** Compared configuration files using `diff`.
 - **Log analysis:** Used `grep`, `grep -i`, `grep -E`, and `grep -n` to search patterns and display matching line numbers.
 - **Remote administration:** Reviewed EC2 connection and file-transfer workflows. 
+### Linux Administration & DevOps Practice — 25 Oct 2026
+
+* **File Management:** gzip, gunzip, zcat
+* **Text Processing:** awk, grep, sort, cut
+* **Remote Administration:** SSH, SCP, rsync
+* **Network Troubleshooting:** hostname, IP addresses, TCP/UDP ports
+* **System Monitoring:** df, ps, watch
+* **Web Tools:** Introduction to wget and curl
+
+Completed hands-on Linux exercises covering log analysis, file compression, remote file transfers, network discovery, and system monitoring.
+
