@@ -3583,3 +3583,11 @@ Use SSH keys with rsync
 
 Completed hands-on Linux exercises covering log analysis, file compression, remote file transfers, network discovery, and system monitoring.
 
+### Linux Administration & Text Processing — 26 Oct 2026
+
+* **Log Monitoring:** `head`, `tail`, `tail -f`
+* **File Comparison:** `diff`
+* **Text Processing:** `awk`, `sed`, `grep`
+* **Log Analysis:** Filtering entries, counting matches, replacing text, and restricting operations to specific line ranges.
+
+Completed hands-on Linux exercises covering log monitoring, configuration comparison, and practical text-processing techniques.
