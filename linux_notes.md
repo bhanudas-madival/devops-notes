@@ -3591,3 +3591,13 @@ Completed hands-on Linux exercises covering log analysis, file compression, remo
 * **Log Analysis:** Filtering entries, counting matches, replacing text, and restricting operations to specific line ranges.
 
 Completed hands-on Linux exercises covering log monitoring, configuration comparison, and practical text-processing techniques.
+### Linux Administration & Text Processing — 29 Oct 2026
+
+* **File Operations:** Copying, renaming, and moving files with `cp` and `mv`.
+* **Text Processing:** Using `awk` to extract lines and columns.
+* **Stream Editing:** Using `sed` to filter matching lines, replace text, and restrict replacements to specific line ranges.
+* **System Monitoring:** Monitoring disk usage and running processes with `watch`, `df`, and `ps`.
+* **Remote Administration:** Practising SSH, SCP, and rsync for EC2 file transfers and directory synchronization.
+* **Network Discovery:** Inspecting hostnames, IP addresses, and TCP/UDP listening ports.
+
+Completed hands-on Linux administration exercises covering file management, log analysis, system monitoring, network discovery, and remote server operations.
