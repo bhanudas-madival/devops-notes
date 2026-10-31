@@ -3601,3 +3601,14 @@ Completed hands-on Linux exercises covering log monitoring, configuration compar
 * **Network Discovery:** Inspecting hostnames, IP addresses, and TCP/UDP listening ports.
 
 Completed hands-on Linux administration exercises covering file management, log analysis, system monitoring, network discovery, and remote server operations.
+## Linux User, Group & Permission Management
+
+- Created Linux user accounts and assigned passwords using `useradd` and `passwd`.
+- Created groups and managed supplementary group memberships using `groupadd` and `usermod`.
+- Verified user IDs, group IDs, and memberships using `id`, `getent`, and `/etc/passwd`.
+- Explored `/etc/shadow`, password hashes, and file access restrictions.
+- Changed file ownership and group ownership using `chown`.
+- Modified file permissions using `chmod` with numeric and symbolic modes.
+- Practiced permission modes: 755, 644, 770.
+- Understood symbolic permission identifiers: u, g, o, and a.
+
